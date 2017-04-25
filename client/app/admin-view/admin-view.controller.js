@@ -3,13 +3,12 @@
 (function(){
 
 class AdminViewComponent {
-  constructor($http, $scope) {
+  constructor($http) {
     this.message = 'Hello';
     this.$http = $http;
     this.moviesData = [];
     this.newMovie = [];
   }
-
 
   $onInit() {
     this.$http.get('/api/admin-view-endpoints').then(response => {
@@ -42,7 +41,7 @@ class AdminViewComponent {
     });
   }
 
-  }
+}
 
 angular.module('movieAppApp')
   .component('adminView', {

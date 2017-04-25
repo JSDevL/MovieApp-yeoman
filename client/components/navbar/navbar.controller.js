@@ -9,6 +9,10 @@ class NavbarController {
   {
     'title': 'Admin',
     'link': '/admin-view'
+  },
+  {
+    'title': 'Theater',
+    'link': '/theater'
   }
   ];
 

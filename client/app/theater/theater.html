@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <table class="table">
+
+    <tr class="success">
+      <th class="text-center col-md-3">State</th>
+      <th class="text-center col-md-3">City</th>
+      <th></th>
+    </tr>
+
+    <tr ng-repeat="theater in theaterCtrl.theatersData">
+      <td class="text-center col-md-4">{{theater.state}}</td>
+      <td class="text-center col-md-4">{{theater.city}}</td>
+      <td class="text-center col-md-4">
+        <button class="btn btn-danger" ng-click="theaterCtrl.updateTheater(theater)">Edit</button>
+        <button class="btn btn-danger" ng-click="theaterCtrl.deleteTheater(theater)">Remove</button>
+      </td>
+    </tr>
+
+    <!-- <tr>
+      <form>
+        <td class="text-center col-md-3"><div class="form-group">
+            <label>{{theaterCtrl.theatersData.state}}</label>
+        </div></td>
+        <td class="text-center col-md-3"><div class="form-group">
+            <input type="text" placeholder="City" class="form-control" ng-model="theaterCtrl.city"/>
+        </div></td>
+        <td class="text-center col-md-3"><button type="button" class="btn btn-success" ng-click="theaterCtrl.updateTheater(theater)">Update</button></td>
+      </form>
+    </tr> -->
+
+    <tr>
+      <form>
+        <td class="text-center col-md-3"><div class="form-group">
+            <input type="text" placeholder="State" class="form-control" ng-model="theaterCtrl.state" />
+        </div></td>
+        <td class="text-center col-md-3"><div class="form-group">
+            <input type="text" placeholder="City" class="form-control" ng-model="theaterCtrl.city"/>
+        </div></td>
+        <td class="text-center col-md-3"><button type="button" class="btn btn-success" ng-click="theaterCtrl.addTheater()">Submit</button></td>
+      </form>
+    </tr>
+
+  </table>
+</div>
