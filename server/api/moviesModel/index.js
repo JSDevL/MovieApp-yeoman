@@ -1,15 +1,11 @@
 'use strict';
 
-var express = require('express');
-var controller = require('./moviesModel.controller');
+import mongoose from 'mongoose';
 
-var router = express.Router();
+var MoviesModelSchema = new mongoose.Schema({
+  name: String,
+  genre: String,
+  date: String
+});
 
-router.get('/', controller.index);
-router.get('/:id', controller.show);
-router.post('/', controller.create);
-router.put('/:id', controller.update);
-router.patch('/:id', controller.update);
-router.delete('/:id', controller.destroy);
-
-module.exports = router;
+export default mongoose.model('moviedetails', MoviesModelSchema);

@@ -4,7 +4,7 @@
 
 'use strict';
 
-import MoviesModelEvents from './moviesModel.events';
+import AdminViewEndpointEvents from './admin-view-endpoint.events';
 
 // Model events to emit
 var events = ['save', 'remove'];
@@ -13,9 +13,9 @@ export function register(socket) {
   // Bind model events to socket events
   for (var i = 0, eventsLength = events.length; i < eventsLength; i++) {
     var event = events[i];
-    var listener = createListener('moviesModel:' + event, socket);
+    var listener = createListener('adminViewEndpoint:' + event, socket);
 
-    MoviesModelEvents.on(event, listener);
+    AdminViewEndpointEvents.on(event, listener);
     socket.on('disconnect', removeListener(event, listener));
   }
 }
@@ -29,6 +29,6 @@ function createListener(event, socket) {
 
 function removeListener(event, listener) {
   return function() {
-    MoviesModelEvents.removeListener(event, listener);
+    AdminViewEndpointEvents.removeListener(event, listener);
   };
 }

@@ -1,12 +1,12 @@
 <header class="hero-unit" id="banner">
   <div class="container">
     <table class="table" centered>
-      <tr>
+      <tr class="success">
         <th class="text-center col-md-4">Name</th>
         <th class="text-center col-md-4">Genre</th>
         <th class="text-center col-md-4">Release Date</th>
       </tr>
-      <tr ng-repeat="movie in movies">
+      <tr ng-repeat="movie in mainCtrl.moviesData">
         <td class="text-center col-md-4">{{movie.name}}</td>
         <td class="text-center col-md-4">{{movie.genre}}</td>
         <td class="text-center col-md-4">{{movie.date}}</td>

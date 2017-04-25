@@ -1,30 +1,43 @@
-<div class="container">
-  <table class="table">
-    <tr>
+<div class="container-fluid">
+  <table class="table" id="movTable">
+    <tr class="success">
       <th class="text-center col-md-3">Name</th>
       <th class="text-center col-md-3">Genre</th>
       <th class="text-center col-md-3">Release Date</th>
       <th class="text-center col-md-3"></th>
     </tr>
-    <tr ng-repeat="movie in movies">
+    <tr ng-repeat="movie in adminViewCtrl.moviesData">
       <td class="text-center col-md-3">{{movie.name}}</td>
       <td class="text-center col-md-3">{{movie.genre}}</td>
       <td class="text-center col-md-3">{{movie.date}}</td>
-      <td class="text-center col-md-3"><button class="btn btn-danger" ng-click="DeleteMovie(movie)">Remove</button></td>
+      <td class="text-center col-md-3"><button class="btn btn-danger" ng-click="adminViewCtrl.deleteMovie(movie)">Remove</button></td>
     </tr>
-    <tr>
-      <form id="inputForm">
+    <tr class="info">
+      <form>
+        <td></td>
         <td class="text-center col-md-3"><div class="form-group">
-            <input type="text" placeholder="Name" class="form-control" ng-model="newMovie.name" />
+            <input type="text" placeholder="Title" class="form-control" ng-model="adminViewCtrl.title" />
         </div></td>
-        <td class="text-center col-md-3"><div class="form-group">
-            <input type="text" placeholder="Genre" class="form-control" ng-model="newMovie.genre"/>
-        </div></td>
-        <td class="text-center col-md-3"><div class="form-group">
-            <input type="text" placeholder="Release Date" class="form-control" ng-model="newMovie.date" />
-        </div></td>
-        <td class="text-center col-md-3"><button type="button" class="btn btn-success" ng-click=AddMovie()>Submit</button></td>
-      </form>
+        <td class="text-center col-md-3"><button class="btn btn-default" ng-click="adminViewCtrl.searchMovie(adminViewCtrl.title)" data-toggle="collapse" data-target="#newMov">Search</button></td>
+        <td></td>
     </tr>
   </table>
+  <div class="row collapse" id="newMov">
+    <div class="col-md-4 text-center">
+      <img src="{{adminViewCtrl.newMovie.Poster}}">
+    </div>
+    <div class="col-md-4">
+      <div class="row">
+        Title: {{adminViewCtrl.newMovie.Title}}</br>
+        Year: {{adminViewCtrl.newMovie.Year}}</br>
+        Langauage: {{adminViewCtrl.newMovie.Language}}</br>
+        Genre: {{adminViewCtrl.newMovie.Genre}}</br>
+        Runtime: {{adminViewCtrl.newMovie.Runtime}}</br>
+        Release Date: {{adminViewCtrl.newMovie.Released}}</br>
+      </div>
+    </div>
+    <div class="col-md-4 text-center">
+      <button class="btn btn-success" ng-click="adminViewCtrl.addMovie()">Add</button>
+    </div>
+  </div>
 </div>

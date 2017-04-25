@@ -17,7 +17,8 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
-  require('../api/moviesModel/moviesModel.socket').register(socket);
+  require('../api/main-endpoint/main-endpoint.socket').register(socket);
+  require('../api/admin-view-endpoint/admin-view-endpoint.socket').register(socket);
   require('../api/thing/thing.socket').register(socket);
 
 }

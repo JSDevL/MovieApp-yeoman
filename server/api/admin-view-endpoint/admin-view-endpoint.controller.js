@@ -1,22 +1,22 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
- * GET     /api/things              ->  index
- * POST    /api/things              ->  create
- * GET     /api/things/:id          ->  show
- * PUT     /api/things/:id          ->  update
- * DELETE  /api/things/:id          ->  destroy
+ * GET     /api/admin-view-endpoints              ->  index
+ * POST    /api/admin-view-endpoints              ->  create
+ * GET     /api/admin-view-endpoints/:id          ->  show
+ * PUT     /api/admin-view-endpoints/:id          ->  update
+ * DELETE  /api/admin-view-endpoints/:id          ->  destroy
  */
 
 'use strict';
 
 import _ from 'lodash';
-import Thing from './thing.model';
+import AdminViewEndpoint from '../moviesModel';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
   return function(entity) {
     if (entity) {
-      return res.status(statusCode).json(entity);
+      res.status(statusCode).json(entity);
     }
   };
 }
@@ -59,43 +59,43 @@ function handleError(res, statusCode) {
   };
 }
 
-// Gets a list of Things
+// Gets a list of AdminViewEndpoints
 export function index(req, res) {
-  return Thing.find().exec()
+  return AdminViewEndpoint.find().exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Gets a single Thing from the DB
+// Gets a single AdminViewEndpoint from the DB
 export function show(req, res) {
-  return Thing.findById(req.params.id).exec()
+  return AdminViewEndpoint.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Creates a new Thing in the DB
+// Creates a new AdminViewEndpoint in the DB
 export function create(req, res) {
-  return Thing.create(req.body)
+  return AdminViewEndpoint.create(req.body)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
 }
 
-// Updates an existing Thing in the DB
+// Updates an existing AdminViewEndpoint in the DB
 export function update(req, res) {
   if (req.body._id) {
     delete req.body._id;
   }
-  return Thing.findById(req.params.id).exec()
+  return AdminViewEndpoint.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(saveUpdates(req.body))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Deletes a Thing from the DB
+// Deletes a AdminViewEndpoint from the DB
 export function destroy(req, res) {
-  return Thing.findById(req.params.id).exec()
+  return AdminViewEndpoint.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(removeEntity(res))
     .catch(handleError(res));

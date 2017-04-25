@@ -1,21 +1,20 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
- * GET     /api/moviesModel              ->  index
- * POST    /api/moviesModel              ->  create
- * GET     /api/moviesModel/:id          ->  show
- * PUT     /api/moviesModel/:id          ->  update
- * DELETE  /api/moviesModel/:id          ->  destroy
+ * GET     /api/main-endpoints              ->  index
+ * POST    /api/main-endpoints              ->  create
+ * GET     /api/main-endpoints/:id          ->  show
+ * PUT     /api/main-endpoints/:id          ->  update
+ * DELETE  /api/main-endpoints/:id          ->  destroy
  */
 
 'use strict';
 
 import _ from 'lodash';
-import MoviesModel from './moviesModel.model';
+import MainEndpoint from '../moviesModel';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
   return function(entity) {
-    console.log(entity);
     if (entity) {
       res.status(statusCode).json(entity);
     }
@@ -60,43 +59,43 @@ function handleError(res, statusCode) {
   };
 }
 
-// Gets a list of MoviesModels
+// Gets a list of MainEndpoints
 export function index(req, res) {
-  return MoviesModel.find().exec()
+  return MainEndpoint.find().exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Gets a single MoviesModel from the DB
+// Gets a single MainEndpoint from the DB
 export function show(req, res) {
-  return MoviesModel.findById(req.params.id).exec()
+  return MainEndpoint.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Creates a new MoviesModel in the DB
+// Creates a new MainEndpoint in the DB
 export function create(req, res) {
-  return MoviesModel.create(req.body)
+  return MainEndpoint.create(req.body)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
 }
 
-// Updates an existing MoviesModel in the DB
+// Updates an existing MainEndpoint in the DB
 export function update(req, res) {
   if (req.body._id) {
     delete req.body._id;
   }
-  return MoviesModel.findById(req.params.id).exec()
+  return MainEndpoint.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(saveUpdates(req.body))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Deletes a MoviesModel from the DB
+// Deletes a MainEndpoint from the DB
 export function destroy(req, res) {
-  return MoviesModel.findById(req.params.id).exec()
+  return MainEndpoint.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(removeEntity(res))
     .catch(handleError(res));
