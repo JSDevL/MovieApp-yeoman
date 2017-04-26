@@ -3,8 +3,16 @@
 import mongoose from 'mongoose';
 
 var TheaterEndpointSchema = new mongoose.Schema({
-  state: String,
-  city: String
+    name: String,
+    theater: []
 });
 
 export default mongoose.model('theaterdetails', TheaterEndpointSchema);
+
+// {
+//   name: String,
+//   location: String,
+//   screens: Number,
+//   seats: Number,
+//   //classType: [String]
+// }

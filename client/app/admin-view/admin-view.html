@@ -1,28 +1,40 @@
 <div class="container-fluid">
   <table class="table" id="movTable">
+
     <tr class="success">
       <th class="text-center col-md-3">Name</th>
       <th class="text-center col-md-3">Genre</th>
       <th class="text-center col-md-3">Release Date</th>
       <th class="text-center col-md-3"></th>
     </tr>
+
     <tr ng-repeat="movie in adminViewCtrl.moviesData">
       <td class="text-center col-md-3">{{movie.name}}</td>
       <td class="text-center col-md-3">{{movie.genre}}</td>
       <td class="text-center col-md-3">{{movie.date}}</td>
       <td class="text-center col-md-3"><button class="btn btn-danger" ng-click="adminViewCtrl.deleteMovie(movie)">Remove</button></td>
     </tr>
-    <tr class="info">
-      <form>
-        <td></td>
-        <td class="text-center col-md-3"><div class="form-group">
-            <input type="text" placeholder="Title" class="form-control" ng-model="adminViewCtrl.title" />
+
+    <tr style="background-color: lightblue;">
+      <form name="movForm">
+        <td class="text-center col-md-3" style="vertical-align: middle;"><div class="form-group">
+            <input type="text" placeholder="Title" class="form-control" ng-model="adminViewCtrl.title"/><br/>
+            <button type="submit" class="btn btn-default" ng-click="adminViewCtrl.searchMovie(adminViewCtrl.title)">Search</button>
         </div></td>
-        <td class="text-center col-md-3"><button class="btn btn-default" ng-click="adminViewCtrl.searchMovie(adminViewCtrl.title)" data-toggle="collapse" data-target="#newMov">Search</button></td>
-        <td></td>
+        <td class="text-center col-md-3" style="vertical-align: middle;"><img src="{{adminViewCtrl.newMovie.Poster}}"></td>
+        <td class="col-md-3" style="vertical-align: middle;">
+          Title: {{adminViewCtrl.newMovie.Title}}</br>
+          Year: {{adminViewCtrl.newMovie.Year}}</br>
+          Langauage: {{adminViewCtrl.newMovie.Language}}</br>
+          Genre: {{adminViewCtrl.newMovie.Genre}}</br>
+          Runtime: {{adminViewCtrl.newMovie.Runtime}}</br>
+          Release Date: {{adminViewCtrl.newMovie.Released}}
+        </td>
+        <td class="text-center col-md-3" style="vertical-align: middle;"><button class="btn btn-success" ng-click="adminViewCtrl.addMovie()">Add</button></td>
+      </form>
     </tr>
   </table>
-  <div class="row collapse" id="newMov">
+  <!-- <div class="row" id="newMov">
     <div class="col-md-4 text-center">
       <img src="{{adminViewCtrl.newMovie.Poster}}">
     </div>
@@ -38,6 +50,8 @@
     </div>
     <div class="col-md-4 text-center">
       <button class="btn btn-success" ng-click="adminViewCtrl.addMovie()">Add</button>
-    </div>
+    </div> -->
   </div>
 </div>
+
+<!-- data-toggle="collapse" data-target="#newMov"

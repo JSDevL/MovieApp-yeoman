@@ -4,18 +4,19 @@
 
   class MainController {
 
-    constructor($http, $scope) {
+    constructor($http) {
       this.$http = $http;
-      this.moviesData = [{
-        name: "hello"
-      }];
+      this.moviesData = [];
+      this.theatersData = [];
     }
 
     $onInit() {
       this.$http.get('/api/main-endpoints').then(response => {
           this.moviesData = response.data;
-          console.log(this.moviesData);
         });
+      this.$http.get('/api/theater-endpoints').then(response => {
+        this.theatersData = response.data;
+      });
     }
   }
 

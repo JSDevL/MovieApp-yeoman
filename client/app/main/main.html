@@ -1,5 +1,8 @@
 <header class="hero-unit" id="banner">
   <div class="container">
+
+    <h2>MOVIES</h2>
+
     <table class="table" centered>
       <tr class="success">
         <th class="text-center col-md-4">Name</th>
@@ -12,4 +15,20 @@
         <td class="text-center col-md-4">{{movie.date}}</td>
       </tr>
     </table>
+
+    <h2>THEATERS</h2>
+
+    <table class="table" centered>
+      <tr class="success">
+        <th class="text-center col-md-4">City</th>
+        <th class="text-center col-md-4">Theater Name</th>
+        <th class="text-center col-md-4">Location</th>
+      </tr>
+      <tr ng-repeat="theater in mainCtrl.theatersData">
+        <td class="text-center col-md-4">{{theater.name}}</td>
+        <td class="text-center col-md-4">{{theater.theater.name}}</td>
+        <td class="text-center col-md-4">{{theater.theater.location}}</td>
+      </tr>
+    </table>
+
 </div>

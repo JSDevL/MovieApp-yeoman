@@ -2,16 +2,13 @@
 
 class NavbarController {
   //start-non-standard
-  menu = [{
-    'title': 'Home',
-    'link': '/'
-  },
+  menu = [
   {
-    'title': 'Admin',
+    'title': 'MOVIES',
     'link': '/admin-view'
   },
   {
-    'title': 'Theater',
+    'title': 'THEATERS',
     'link': '/theater'
   }
   ];
