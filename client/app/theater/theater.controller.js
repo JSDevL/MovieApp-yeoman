@@ -4,15 +4,17 @@
 
 class TheaterComponent {
   constructor($http, $scope, socket) {
-    this.message = 'Hello';
     this.$http = $http;
     this.socket = socket;
     this.theatersData = [];
     this.newTheater = [];
     this.cityName;
+    this.newCityName;
+    this.citiesData = [];
 
     $scope.$on('$destroy', function(){
       socket.unsyncUpdates('theaterEndpoint');
+      socket.unsyncUpdates('city');
     })
   }
 
@@ -20,23 +22,37 @@ class TheaterComponent {
     this.$http.get('/api/theater-endpoints').then(response => {
       this.theatersData = response.data;
       this.socket.syncUpdates('theaterEndpoint', this.theatersData);
-      console.log(response.data[0]);
+    });
+    this.$http.get('/api/cities').then(response => {
+      this.citiesData = response.data;
+      this.socket.syncUpdates('city', this.citiesData);
+    })
+  }
+
+  addCity() {
+    var city = prompt("Enter a new city");
+    this.$http.post('/api/cities', {
+      name: city
     });
   }
 
   addTheater() {
-    var theater = {
-      name: this.newTheater.name,
-      location: this.newTheater.location,
-      screens: this.newTheater.screens,
-      seats: this.newTheater.seats
+    /* to citiesdetails collection */
+    for(let city of this.citiesData){
+      if(city.name===this.cityName){
+        this.selectedCity = city;
+      }
     }
+    this.$http.put('/api/cities/' + this.selectedCity._id, {
+      $push: {
+        theater: this.newTheater.name
+      }
+     });
 
+    /* to theaterdetails collection */
     this.$http.post('/api/theater-endpoints/', {
-      name: this.cityName,
-      theater: [
-        theater
-      ]
+      name: this.newTheater.name,
+      location: this.newTheater.location
     });
   }
 

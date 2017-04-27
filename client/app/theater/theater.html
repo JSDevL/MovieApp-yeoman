@@ -1,113 +1,30 @@
 <div class="container-fluid" style="text-align: center;">
 
-  <h4 style="margin: 50px 0;">ADD OR DELETE THEATERS</h4>
+  <h4>ADD A NEW THEATER</h4>
 
-  <div class="dropdown" style="display: inline;">
-    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      Existing Cities
-      <span class="caret"></span>
-    </button>
-    <ul style="text-align: center;" class="dropdown-menu" aria-labelledby="dropdownMenu1">
-      <li ng-repeat="cityDetails in theaterCtrl.theatersData">{{cityDetails.name}}</li>
-    </ul>
+  <div class="row">
+
+    <div class="col-md-4">
+      <input type="text" placeholder="Name" class="form-control" ng-model="theaterCtrl.newTheater.name" />
+    </div>
+
+    <div class="col-md-4">
+      <input type="text" placeholder="Location" class="form-control" ng-model="theaterCtrl.newTheater.location" />
+    </div>
+
+    <div class="col-md-4">
+      <label>Select a city</label>
+      <select ng-model="theaterCtrl.cityName" id="myselect" style="width: 150px; margin: 0 20px;" required>
+          <option ng-repeat="city in theaterCtrl.citiesData" value="{{city.name}}">{{city.name}}</option>
+      </select>
+      <button class="btn btn-default" type="submit" ng-click="theaterCtrl.addCity()">Add</button>
+    </div>
+
   </div>
 
-  <div style="margin: 50px 50px 50px 0;">
-    <input style="margin: 0 50px" type="text" placeholder="Enter City" ng-model="theaterCtrl.cityName">
-    <button class="btn btn-default" type="button" ng-click="theaterInput=true">OKAY</button>
+  <div class="row">
+    <button class="btn btn-default" type="submit" ng-click="theaterCtrl.addTheater()">Add theater</button>
   </div>
 
-  <br/>
-
-  <div ng-show="theaterInput">
-    <table class="table">
-      <form>
-        <label>Add a theater in {{theaterCtrl.cityName}}</label>
-
-        <td class="text-center col-md-2"><div class="form-group">
-          <input type="text" placeholder="Name" class="form-control" ng-model="theaterCtrl.newTheater.name" />
-        </div></td>
-
-        <td class="text-center col-md-2"><div class="form-group">
-          <input type="text" placeholder="Location" class="form-control" ng-model="theaterCtrl.newTheater.location" />
-        </div></td>
-
-        <td class="text-center col-md-2"><div class="form-group">
-          <input type="text" placeholder="No of Screens" class="form-control" ng-model="theaterCtrl.newTheater.screens" />
-        </div></td>
-
-        <td class="text-center col-md-2"><div class="form-group">
-          <input type="text" placeholder="Number of Seats" class="form-control" ng-model="theaterCtrl.newTheater.seats" />
-        </div></td>
-
-        <td class="text-center col-md-2"><button type="button" class="btn btn-success" ng-click="theaterCtrl.addTheater()">Submit</button></td>
-      </form>
-    </table>
-  </div>
 
 </div>
-
-
-
-
-
-
-<!-- <tr>
-  <form>
-    <td class="text-center col-md-3"><div class="form-group">
-        <label>{{theaterCtrl.theatersData.state}}</label>
-    </div></td>
-    <td class="text-center col-md-3"><div class="form-group">
-        <input type="text" placeholder="City" class="form-control" ng-model="theaterCtrl.city"/>
-    </div></td>
-    <td class="text-center col-md-3"><button type="button" class="btn btn-success" ng-click="theaterCtrl.updateTheater(theater)">Update</button></td>
-  </form>
-</tr> -->
-
-<!-- <table class="table">
-
-  <tr class="success">
-    <th class="text-center col-md-3">Name</th>
-    <th class="text-center col-md-3">City</th>
-    <th class="text-center col-md-3">Location</th>
-    <th class="text-center col-md-3"></th>
-  </tr>
-
-  <tr ng-repeat="theater in theaterCtrl.theatersData">
-    <td class="text-center col-md-3">{{theater.name}}</td>
-    <td class="text-center col-md-3">{{theater.city}}</td>
-    <td class="text-center col-md-3">{{theater.location}}</td>
-    <td class="text-center col-md-3">
-      <button class="btn btn-danger" ng-click="theaterCtrl.updateTheater(theater)">Edit</button>
-      <button class="btn btn-danger" ng-click="theaterCtrl.deleteTheater(theater)">Remove</button>
-    </td>
-  </tr>
-
-  <tr>
-    <form>
-      <td class="text-center col-md-3"><div class="form-group">
-          <input type="text" placeholder="Name" class="form-control" ng-model="theaterCtrl.name" />
-      </div></td>
-      <td class="text-center col-md-3"><div class="form-group">
-          <input type="text" placeholder="City" class="form-control" ng-model="theaterCtrl.city"/>
-      </div></td>
-      <td class="text-center col-md-3"><div class="form-group">
-          <input type="text" placeholder="Location" class="form-control" ng-model="theaterCtrl.location"/>
-      </div></td>
-      <td class="text-center col-md-3"><button type="button" class="btn btn-success" ng-click="theaterCtrl.addTheater()">Submit</button></td>
-    </form>
-  </tr>
-
-</table> -->
-
-<!-- <td class="text-center col-md-2"><div class="form-group">
-  <div class="btn-group">
-    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Class Type<span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" placearia-labelledby="dropdownMenu1">
-      <li><input type="checkbox" value="Gold" class="form-control" ng-model="theaterCtrl.newTheater.gold" />Gold</li>
-      <li><input type="checkbox" value="Silver" class="form-control" ng-model="theaterCtrl.newTheater.silver" />Silver</li>
-    </ul>
-  </div>
-</div></td> -->
