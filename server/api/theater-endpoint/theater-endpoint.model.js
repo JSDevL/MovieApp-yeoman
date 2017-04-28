@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 
 var TheaterEndpointSchema = new mongoose.Schema({
     name: String,
-    locaton: String
+    location: String
 });
 
 export default mongoose.model('theaterdetails', TheaterEndpointSchema);

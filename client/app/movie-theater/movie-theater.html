@@ -1,0 +1,79 @@
+<div class="container-fluid">
+  <form class="form-horizontal" style="margin-top:30px;">
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Select a movie</label>
+      <div class="col-sm-2">
+        <select class="form-control" ng-model="movieTheaterCtrl.movieName">
+          <option ng-repeat="movie in movieTheaterCtrl.moviesData" value="{{movie.name}}">{{movie.name}}</option>
+        </select>
+      </div>
+      <div class="col-sm-1">
+        <button class="form-control btn btn-default" ng-click="">Select</button>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Select a city</label>
+      <div class="col-sm-2">
+        <select class="form-control" ng-model="movieTheaterCtrl.cityName">
+          <option ng-repeat="city in movieTheaterCtrl.citiesData" value="{{city.name}}">{{city.name}}</option>
+        </select>
+      </div>
+      <div class="col-sm-1">
+        <button class="form-control btn btn-default" ng-click="movieTheaterCtrl.getTheaters()">Select</button>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Select a theater</label>
+      <div class="col-sm-2">
+        <select class="form-control" ng-model="movieTheaterCtrl.theaterName">
+          <option ng-repeat="theater in movieTheaterCtrl.theatersList" value="{{theater}}">{{theater}}</option>
+        </select>
+      </div>
+      <div class="col-sm-1">
+        <button class="form-control btn btn-default" ng-click="movieTheaterCtrl.getTheaters()">Select</button>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-2">
+        <table class="table">
+          <tr class="success">
+            <th class="text-center">Dates</th>
+            <th></th>
+          </tr>
+          <tr ng-repeat="movie in adminViewCtrl.moviesData">
+            <td class="text-center col-md-3"></td>
+            <td><button class="form-control btn btn-default">-</button></td>
+          </tr>
+          <tr>
+            <td><input class="form-control" type="date" ng-model="movieTheaterCtrl.dates"></td>
+            <td><button class="form-control btn btn-default">+</button></td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-sm-1"></div>
+      <div class="col-sm-2">
+        <table class="table">
+          <tr class="success">
+            <th class="text-center">Times</th>
+            <th></th>
+          </tr>
+          <tr ng-repeat="movie in adminViewCtrl.moviesData">
+            <td class="text-center col-md-3"></td>
+            <td><button class="form-control btn btn-default">-</button></td>
+          </tr>
+          <tr>
+            <td><input class="form-control" type="time" ng-model="movieTheaterCtrl.times"></td>
+            <td><button class="form-control btn btn-default">+</button></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-info" style="margin-left:380px;" ng-click="movieTheaterCtrl.addDetails()">SUBMIT</button>
+
+  </form>
+</div>

@@ -10,6 +10,10 @@ class NavbarController {
   {
     'title': 'THEATERS',
     'link': '/theater'
+  },
+  {
+    'title': 'MOVIE-THEATERS',
+    'link': '/movie-theater'
   }
   ];
 

@@ -9,7 +9,7 @@ class TheaterComponent {
     this.theatersData = [];
     this.newTheater = [];
     this.cityName;
-    this.newCityName;
+    this.findCity = [];
     this.citiesData = [];
 
     $scope.$on('$destroy', function(){
@@ -26,7 +26,7 @@ class TheaterComponent {
     this.$http.get('/api/cities').then(response => {
       this.citiesData = response.data;
       this.socket.syncUpdates('city', this.citiesData);
-    })
+    });
   }
 
   addCity() {
@@ -55,6 +55,16 @@ class TheaterComponent {
       location: this.newTheater.location
     });
   }
+
+/* FIX THIS */
+
+  // getTheaters() {
+  //   for(let theater of this.citiesData){
+  //     this.findCity = this.citiesData[theater].theater
+  //     }
+  //   }
+  //   this.findCity = this.citiesData[].name
+  // }
 
   deleteTheater(theater) {
     this.$http.delete('/api/theater-endpoints/' + theater._id);

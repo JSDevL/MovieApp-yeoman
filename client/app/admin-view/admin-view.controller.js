@@ -4,7 +4,6 @@
 
 class AdminViewComponent {
   constructor($http, $scope, socket) {
-    this.message = 'Hello';
     this.$http = $http;
     this.socket = socket;
     this.moviesData = [];
