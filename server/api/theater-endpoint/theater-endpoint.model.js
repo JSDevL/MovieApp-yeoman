@@ -8,11 +8,3 @@ var TheaterEndpointSchema = new mongoose.Schema({
 });
 
 export default mongoose.model('theaterdetails', TheaterEndpointSchema);
-
-// {
-//   name: String,
-//   location: String,
-//   screens: Number,
-//   seats: Number,
-//   //classType: [String]
-// }

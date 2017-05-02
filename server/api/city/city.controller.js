@@ -86,9 +86,9 @@ export function update(req, res) {
   if (req.body._id) {
     delete req.body._id;
   }
-  return City.findByIdAndUpdate(req.params.id, req.body).exec()
+  return City.findByIdAndUpdate(req.params.id, req.body, {new: true}).exec()
      .then(handleEntityNotFound(res))
-  //   .then(saveUpdates(req.body))
+     .then(saveUpdates(req.body))
      .then(respondWithResult(res))
      .catch(handleError(res));
 }

@@ -28,7 +28,7 @@ class AdminViewComponent {
       genre: this.newMovie.Genre,
       date: this.newMovie.Released
     });
-    this.movieInput=false;
+    this.movieInput = false;
   }
 
   deleteMovie(movie) {
@@ -39,6 +39,7 @@ class AdminViewComponent {
     this.$http.get('http://www.omdbapi.com/?t=' + title).then(response => {
       this.newMovie = response.data;
       if(this.newMovie){
+        this.title = '';
         this.movieInput = true;
         document.getElementById("searchButton").value = "";
       }

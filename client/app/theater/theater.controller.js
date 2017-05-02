@@ -11,6 +11,7 @@ class TheaterComponent {
     this.cityName;
     this.findCity = [];
     this.citiesData = [];
+    this.viewMovie = false;
 
     $scope.$on('$destroy', function(){
       socket.unsyncUpdates('theaterEndpoint');
@@ -37,10 +38,12 @@ class TheaterComponent {
   }
 
   addTheater() {
+
     /* to citiesdetails collection */
     for(let city of this.citiesData){
       if(city.name===this.cityName){
         this.selectedCity = city;
+        this.theatersList = city.theater;
       }
     }
     this.$http.put('/api/cities/' + this.selectedCity._id, {
@@ -54,20 +57,46 @@ class TheaterComponent {
       name: this.newTheater.name,
       location: this.newTheater.location
     });
+
+    this.newTheater = '';
+    this.cityName = ''
+    this.findCity = '';
+    this.viewMovie = false;
   }
 
-/* FIX THIS */
+  getTheaters() {
+    console.log(this.citiesData);
+    for(let city of this.citiesData){
+      if(city.name===this.findCity){
+        this.theatersList = city.theater;
+      }
+    }
+    this.viewMovie = true;
+  }
 
-  // getTheaters() {
-  //   for(let theater of this.citiesData){
-  //     this.findCity = this.citiesData[theater].theater
-  //     }
-  //   }
-  //   this.findCity = this.citiesData[].name
-  // }
+  deleteTheater(theaterToDel) {
 
-  deleteTheater(theater) {
-    this.$http.delete('/api/theater-endpoints/' + theater._id);
+    for(let city of this.citiesData){
+      if(city.name===this.findCity){
+        var cityId = city._id;
+      }
+    }
+
+    this.$http.put('/api/cities/' + cityId, {
+      name: this.findCity,
+      theater: this.theatersList.filter(function(theater) {
+        return theater!==theaterToDel
+      })
+    })
+    .then(response => {
+      console.log(this.citiesData);
+      for(let city of this.citiesData){
+        if(city.name===this.findCity){
+          this.theatersList = city.theater;
+        }
+      }
+    })
+
   }
 
   updateTheater(theater) {
