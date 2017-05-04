@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
   <form class="form-horizontal" style="margin-top:30px;">
     <div class="form-group">
       <label class="col-sm-2 control-label">Select a movie</label>
@@ -23,57 +23,45 @@
         <button class="form-control btn btn-default" ng-click="movieTheaterCtrl.getTheaters()">Select</button>
       </div>
     </div>
-
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Select a theater</label>
-      <div class="col-sm-2">
-        <select class="form-control" ng-model="movieTheaterCtrl.theaterName">
-          <option ng-repeat="theater in movieTheaterCtrl.theatersList" value="{{theater}}">{{theater}}</option>
-        </select>
-      </div>
-      <div class="col-sm-1">
-        <button class="form-control btn btn-default" ng-click="movieTheaterCtrl.getTheaters()">Select</button>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <div class="col-sm-1"></div>
-      <div class="col-sm-2">
-        <table class="table">
-          <tr class="success">
-            <th class="text-center">Dates</th>
-            <th></th>
-          </tr>
-          <tr ng-repeat="movie in adminViewCtrl.moviesData">
-            <td class="text-center col-md-3"></td>
-            <td><button class="form-control btn btn-default">-</button></td>
-          </tr>
-          <tr>
-            <td><input class="form-control" type="date" ng-model="movieTheaterCtrl.dates"></td>
-            <td><button class="form-control btn btn-default">+</button></td>
-          </tr>
-        </table>
-      </div>
-      <div class="col-sm-1"></div>
-      <div class="col-sm-2">
-        <table class="table">
-          <tr class="success">
-            <th class="text-center">Times</th>
-            <th></th>
-          </tr>
-          <tr ng-repeat="movie in adminViewCtrl.moviesData">
-            <td class="text-center col-md-3"></td>
-            <td><button class="form-control btn btn-default">-</button></td>
-          </tr>
-          <tr>
-            <td><input class="form-control" type="time" ng-model="movieTheaterCtrl.times"></td>
-            <td><button class="form-control btn btn-default">+</button></td>
-          </tr>
-        </table>
-      </div>
-    </div>
-
-    <button type="submit" class="btn btn-info" style="margin-left:380px;" ng-click="movieTheaterCtrl.addDetails()">SUBMIT</button>
-
   </form>
+  
+  <div class="panel-group" id="accordion">
+    <div class="panel" ng-repeat="theater in movieTheaterCtrl.theatersList">
+      <div class="panel-heading">
+        <button class="btn btn-default" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-{{theater}}" ng-click="movieTheaterCtrl.getTheaterDetails(theater)">{{theater}}</button>
+        <button class="btn btn-danger" ng-click="movieTheaterCtrl.deleteMapping(theater)">X</button>
+      </div>
+      <div id="collapse-{{theater}}" class="panel-collapse collapse">
+        <div class="panel-body">
+          <p ng-hide="movieTheaterCtrl.datesList">No Dates Available</p>
+          <p class="panel-title" ng-show="movieTheaterCtrl.datesList">Dates</p>
+          <div class="well well-sm" ng-show="movieTheaterCtrl.datesList" ng-repeat="date in movieTheaterCtrl.datesList">
+            <label>{{date}}</label>
+            <button class="btn btn-danger" ng-click="movieTheaterCtrl.deleteDate(date)">-</button>
+          </div>
+          <div class="well">
+            <input class="form-control" type="date" ng-model="movieTheaterCtrl.date">
+            <button class="form-control btn btn-default" ng-click="movieTheaterCtrl.addDate()">+</button>
+          </div>
+        </div>
+        <div class="panel-body">
+          <p ng-hide="movieTheaterCtrl.timesList">No Timings Available</p>
+          <p class="panel-title" ng-show="movieTheaterCtrl.timesList">Timings</p>
+          <div class="well well-sm" ng-show="movieTheaterCtrl.timesList" ng-repeat="time in movieTheaterCtrl.timesList">
+            <label>{{time}}</label>
+            <button class="btn btn-danger" ng-click="movieTheaterCtrl.deleteTime(time)">-</button>
+          </div>
+          <div class="well">
+            <input class="form-control" type="time" ng-model="movieTheaterCtrl.time">
+            <button class="form-control btn btn-default" ng-click="movieTheaterCtrl.addTime()">+</button>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success" ng-click="movieTheaterCtrl.saveDetails()">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
 </div>

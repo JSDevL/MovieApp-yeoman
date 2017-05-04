@@ -12,12 +12,24 @@
       this.dates;
       this.times;
       this.theatersList = [];
+      this.datesList = [];
+      this.timesList = [];
 
       $scope.$on('$destroy', function(){
         socket.unsyncUpdates('adminViewEndpoint');
         socket.unsyncUpdates('city');
-        socket.unsyncUpdates('theaterEndpoint');
-      })
+        socket.unsyncUpdates('movieTheaterEndpoint');
+      });
+
+
+      $(function() {
+        $("li").click(function(e) {
+          e.preventDefault();
+          $("li").removeClass("active");
+          $(this).parent().addClass("active");
+        });
+      });
+
     }
 
     $onInit() {
@@ -32,9 +44,9 @@
         this.socket.syncUpdates('city', this.citiesData);
       });
       this.$http.get('/api/movie-theater-endpoints').then(response => {
-        this.mappedData = response.data;
-        console.log(this.mappedData);
-        this.socket.syncUpdates('movieTheaterEndpoint', this.mappedData);
+        this.boundData = response.data;
+        console.log(this.boundData);
+        this.socket.syncUpdates('movieTheaterEndpoint', this.boundData);
       });
     }
 
@@ -47,41 +59,69 @@
       }
     }
 
-    addDetails() {
+    getTheaterDetails(theaterName) {
+      this.theaterName=theaterName;
+      this.datesList='';
+      this.timesList='';
+      if(this.boundData.length){
+        for(let ele of this.boundData){
+          if(ele.city===this.cityName && ele.movie===this.movieName && ele.theater===theaterName){
+            this.datesList = ele.dates;
+            this.timesList = ele.times;
+          }
+        }
+      }
+    }
+
+    addDate() {
+      var date = new Date(this.date).toDateString();
+      this.datesList.push(date);
+      console.log(this.datesList);
+      this.date='';
+    }
+
+    deleteDate(date) {
+      var pos = this.datesList.indexOf(date);
+      this.datesList.splice(pos, 1);
+      console.log(this.datesList);
+    }
+
+    addTime() {
       function addZero(i) {
         if (i < 10) {
           i = "0" + i;
         } return i;
       }
-      var date = new Date(this.dates).toDateString();
-      var hour = addZero(new Date(this.times).getHours());
-      var min = addZero(new Date(this.times).getMinutes());
-      console.log(date);
+      var hour = addZero(new Date(this.time).getHours());
+      var min = addZero(new Date(this.time).getMinutes());
       var time = hour+":"+min;
-      console.log(time);
-      if(this.mappedData){
-        for(let map of this.mappedData){
-          if(map.city===this.cityName && map.movie===this.movieName && map.theater===this.theaterName){
-            console.log(map.city);
-            console.log(this.cityName);
-            console.log(map.movie);
-            console.log(this.movieName);
-            console.log(map.theater);
-            console.log(this.theaterName);
-            console.log(map._id);
-            this.$http.put('/api/movie-theater-endpoints/' + map._id, {
-              $push: {
-                dates: date
-              }
+      this.timesList.push(time);
+      console.log(this.time);
+      console.log(this.timesList);
+      this.time='';
+    }
+
+    deleteTime(time) {
+      var pos = this.timesList.indexOf(time);
+      this.timesList.splice(pos, 1);
+      console.log(this.timesList);
+    }
+
+    saveDetails() {
+      if(this.boundData.length){
+        for(let ele of this.boundData){
+          if(ele.city===this.cityName && ele.movie===this.movieName && ele.theater===this.theaterName){
+            return this.$http.put('/api/movie-theater-endpoints/' + ele._id, {
+              dates: this.datesList,
+              times: this.timesList
             });
-          } else if(map.city!==this.cityName && map.movie!==this.movieName && map.theater!==this.theaterName) {
-            console.log("shouldn't go here");
+          } else{
             this.$http.post('/api/movie-theater-endpoints', {
               city: this.cityName,
               movie: this.movieName,
               theater: this.theaterName,
-              dates: date,
-              times: time
+              dates: this.datesList,
+              times: this.timesList
             });
           }
         }
@@ -90,11 +130,28 @@
           city: this.cityName,
           movie: this.movieName,
           theater: this.theaterName,
-          dates: date,
-          times: time
+          dates: this.datesList,
+          times: this.timesList
         });
       }
+      this.cityName='';
+      this.movieName='';
+      this.theaterName='';
+      this.datesList='';
+      this.timesList='';
     }
+
+    deleteMapping(theaterName) {
+      for(let ele of this.boundData){
+        if(ele.city===this.cityName && ele.movie===this.movieName && ele.theater===theaterName){
+          if(confirm(theaterName + " is mapped to " + this.movieName + ". Are you sure you want to remove it?") === true){
+            this.$http.delete('/api/movie-theater-endpoints/' + ele._id);
+          }
+        }
+      }
+    }
+
+
   }
 
   angular.module('movieAppApp')
