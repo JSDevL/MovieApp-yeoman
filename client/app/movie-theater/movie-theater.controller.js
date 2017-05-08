@@ -3,7 +3,7 @@
 (function(){
 
   class MovieTheaterComponent {
-    constructor($http, $scope, socket) {
+    constructor($http, $scope, socket, booking) {
       this.$http = $http;
       this.socket = socket;
       this.movieName;
@@ -20,16 +20,6 @@
         socket.unsyncUpdates('city');
         socket.unsyncUpdates('movieTheaterEndpoint');
       });
-
-
-      $(function() {
-        $("li").click(function(e) {
-          e.preventDefault();
-          $("li").removeClass("active");
-          $(this).parent().addClass("active");
-        });
-      });
-
     }
 
     $onInit() {
@@ -61,8 +51,8 @@
 
     getTheaterDetails(theaterName) {
       this.theaterName=theaterName;
-      this.datesList='';
-      this.timesList='';
+      this.datesList=[];
+      this.timesList=[];
       if(this.boundData.length){
         for(let ele of this.boundData){
           if(ele.city===this.cityName && ele.movie===this.movieName && ele.theater===theaterName){
@@ -74,9 +64,23 @@
     }
 
     addDate() {
-      var date = new Date(this.date).toDateString();
-      this.datesList.push(date);
+      function addZero(i) {
+        if (i < 10) {
+          i = "0" + i;
+        } return i;
+      }
+      var date = addZero(new Date(this.date).getDate());
+      var month = addZero(new Date(this.date).getMonth());
+      var year = new Date(this.date).getFullYear();
+      var fullDate = date+"."+month+"."+year;
       console.log(this.datesList);
+      if(this.datesList.length){
+        this.datesList.push(fullDate);
+        console.log(this.datesList);
+      } else{
+        this.datesList = [fullDate];
+        console.log(this.datesList);
+      }
       this.date='';
     }
 
@@ -137,14 +141,12 @@
       this.cityName='';
       this.movieName='';
       this.theaterName='';
-      this.datesList='';
-      this.timesList='';
     }
 
     deleteMapping(theaterName) {
       for(let ele of this.boundData){
         if(ele.city===this.cityName && ele.movie===this.movieName && ele.theater===theaterName){
-          if(confirm(theaterName + " is mapped to " + this.movieName + ". Are you sure you want to remove it?") === true){
+          if(confirm(this.movieName + " is mapped to " + theaterName + ". Are you sure you want to remove it?") === true){
             this.$http.delete('/api/movie-theater-endpoints/' + ele._id);
           }
         }

@@ -24,33 +24,11 @@
         <a class="right carousel-control" href="#ex-carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
     </div>
 
-    <a class="btn btn-info" style="padding: 10px; margin: 100px; font-size: 20px">BOOK NOW</a>
-
-    <!-- <h2>MOVIES</h2>
-    <table class="table" centered>
-      <tr class="success">
-        <th class="text-center col-md-4">Name</th>
-        <th class="text-center col-md-4">Genre</th>
-        <th class="text-center col-md-4">Release Date</th>
-      </tr>
-      <tr ng-repeat="movie in mainCtrl.moviesData">
-        <td class="text-center col-md-4">{{movie.name}}</td>
-        <td class="text-center col-md-4">{{movie.genre}}</td>
-        <td class="text-center col-md-4">{{movie.date}}</td>
-      </tr>
-    </table>
-
-    <h2>THEATERS</h2>
-
-    <table class="table" centered>
-      <tr class="success">
-        <th class="text-center col-md-4">Theater Name</th>
-        <th class="text-center col-md-4">Location</th>
-      </tr>
-      <tr ng-repeat="theater in mainCtrl.theatersData">
-        <td class="text-center col-md-4">{{theater.name}}</td>
-        <td class="text-center col-md-4">{{theater.location}}</td>
-      </tr>
-    </table> -->
+    <div ng-repeat="movie in mainCtrl.movieDetails">
+      <h1>{{movie.name}}</h1>
+      <img src="{{movie.poster}}">
+      <h4>{{movie.genre}}</h4>
+      <a class="btn btn-info" style="padding: 10px; margin: 100px; font-size: 20px" ng-click="mainCtrl.sel(movie.name)" href="/datetime-select">BOOK NOW</a>
+    </div>
 
 </div>

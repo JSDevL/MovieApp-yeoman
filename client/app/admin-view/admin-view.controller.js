@@ -26,7 +26,8 @@ class AdminViewComponent {
     this.$http.post('/api/admin-view-endpoints/', {
       name: this.newMovie.Title,
       genre: this.newMovie.Genre,
-      date: this.newMovie.Released
+      date: this.newMovie.Released,
+      poster: this.newMovie.Poster
     });
     this.movieInput = false;
   }

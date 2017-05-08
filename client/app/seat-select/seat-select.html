@@ -1,0 +1,46 @@
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">How many tickets?</h4>
+      </div>
+      <div class="modal-body">
+        <ul class="modalUL">
+          <li class="modalLI" ng-repeat="n in [].constructor(10) track by $index" ng-click="seatSelectCtrl.sample($index+1)">{{$index+1}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="text-align:center">
+  <ol type="A">
+    <h4>PREMIUM [Rs. 300]</h4>
+    <li ng-repeat="n in [].constructor(2) track by $index">
+      <div class="seat" ng-repeat="n in [].constructor(10) track by $index">{{[].constructor(10).length-$index}}</div>
+      <div class="space"></div>
+      <div class="space"></div>
+      <div class="seat" ng-repeat="n in [].constructor(10) track by $index">{{$index+1}}</div>
+    </li>
+    <h4>GOLD [Rs. 210]</h4>
+    <li ng-repeat="n in [].constructor(3) track by $index">
+      <div class="seat" ng-repeat="n in [].constructor(10) track by $index">{{[].constructor(10).length-$index}}</div>
+      <div class="space"></div>
+      <div class="space"></div>
+      <div class="seat" ng-repeat="n in [].constructor(10) track by $index">{{$index+1}}</div>
+    </li>
+    <h4>SILVER [Rs. 180]</h4>
+    <li ng-repeat="n in [].constructor(10) track by $index">
+      <div class="seat" ng-repeat="n in [].constructor(10) track by $index">{{[].constructor(10).length-$index}}</div>
+      <div class="space"></div>
+      <div class="space"></div>
+      <div class="seat" ng-repeat="n in [].constructor(10) track by $index">{{$index+1}}</div>
+    </li>
+  </ol>
+</div>
+
+<div class="">
+
+  payment
+</div>
