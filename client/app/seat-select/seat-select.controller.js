@@ -21,6 +21,7 @@ class SeatSelectComponent {
     this.booking = booking;
     this.$http = $http;
     this.bookedSeats = [];
+    this.selectedTheater;
   }
 
   $onInit() {
@@ -28,8 +29,10 @@ class SeatSelectComponent {
     console.log(this.totSeats);
     this.$http.get('/api/payment-endpoints').then(response => {
       this.bookedSeats = response.data;
+      console.log(response.data);
     });
-    console.log($('.seat').attr('data-row'));
+    this.selectedTheater = this.booking.myFunc.selectedTheater;
+    console.log(this.selectedTheater);
   }
 
   onClick(e){
@@ -55,7 +58,8 @@ class SeatSelectComponent {
           classType: $(e.target).attr('data-classType')
         });
         this.count++;
-        this.selectedClass = $(e.target).attr('data-classType');
+        this.selectedClass = $(e.target).attr('data-classType').slice(0,-9);
+
       }
       else{
         window.alert("Can't select more seats. Please increase the number of tickets needed.");
@@ -74,11 +78,19 @@ class SeatSelectComponent {
   }
 
   isBooked(r,c) {
-    for(let ele of this.selectedSeats){
-        if(ele.row==r && ele.col==c){
+    for(let ele of this.bookedSeats){
+      for(let seat of ele.seatNos){
+        var row = seat.substr(0, 1).charCodeAt(0) - 64;
+        var col = parseInt(seat.substr(1));
+        if(r===row && c===col){
           return true;
         }
+      }
     }
+    // for(let seat of this.bookedSeats){
+    //   // row = seat.substr(0, 1).charCodeAt(0) - 65;
+    //   console.log(seat);
+    // }
     return false;
   }
 

@@ -3,16 +3,21 @@
 (function(){
 
 class PaymentComponent {
-  constructor(booking) {
+  constructor($http, booking) {
+    this.$http = $http;
     this.booking = booking;
     this.seatNos = booking.myFunc.bookedSeats;
-    console.log(this.seatNos);
   }
 
+$onInit() {
+  console.log(this.seatNos);
+}
+
   submit() {
-    this.http.post('/api/payment-endpoints', {
+    this.$http.post('/api/payment-endpoints', {
       seatNos: this.seatNos
     });
+    console.log("cwdc");
   }
 
 }

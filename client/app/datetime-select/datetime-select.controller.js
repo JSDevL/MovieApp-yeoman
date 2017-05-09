@@ -3,8 +3,9 @@
 (function(){
 
 class DatetimeSelectComponent {
-  constructor($http, $scope, socket, booking) {
+  constructor($http, $scope, $location, socket, booking) {
     this.$http = $http;
+    this.$location = $location;
     this.socket = socket;
     this.theaterData = [];
     this.booking = booking;
@@ -53,8 +54,10 @@ class DatetimeSelectComponent {
   }
 
   sel(theater, timing) {
+    console.log(theater);
     this.booking.myFunc.selectedTheater = theater;
     this.booking.myFunc.selectedTime = timing;
+    this.$location.path('/seat-select');
   }
 
 }
