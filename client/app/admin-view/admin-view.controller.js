@@ -23,7 +23,7 @@ class AdminViewComponent {
   }
 
   addMovie() {
-    this.$http.post('/api/admin-view-endpoints/', {
+    this.$http.post('/api/admin-view-endpoints', {
       name: this.newMovie.Title,
       genre: this.newMovie.Genre,
       date: this.newMovie.Released,

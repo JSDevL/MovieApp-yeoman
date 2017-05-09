@@ -1,8 +1,33 @@
+.container {
+  width: 90%;
+}
+
+.cont-left {
+  display: inline-block;
+  float: left;
+}
+
+ol {
+  color: lightgrey;
+}
+
+h3 {
+  font-family:'courier new';
+  border-bottom: 1px dashed lightgrey;
+  margin: 0 0 20px 0;
+  padding: 10px 0 5px 0;
+}
+
+h4 {
+  font-family:'courier new';
+  color: black;
+}
+
 .space {
   display: inline-block;
   height: 22px;
   width:22px;
-  margin: 4px 10px;
+  margin: 4px 5px;
 }
 .seat {
   cursor: pointer;
@@ -10,14 +35,19 @@
   display: inline-block;
   height: 22px;
   width:22px;
-  margin: 4px 10px;
+  margin: 4px 5px;
   color: lightgrey;
   border: 1px solid grey;
   border-radius: 5px;
 }
 
 .seat.selected-cell {
-  background-color: #0073e6;
+  background-color: #46b8da;
+  color: white;
+}
+
+.seat.booked-cell{
+  background-color: grey;
   color: white;
 }
 
@@ -38,6 +68,11 @@
   width: 56px;
 }
 
-h4 {
-  font-family:'courier new';
+.cont-right {
+  width: 400px;
+  height: 300px;
+  background-color: #f2f2f2;
+  display: inline-block;
+  float: right;
+  margin-top:
 }

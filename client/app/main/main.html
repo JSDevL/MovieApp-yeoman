@@ -24,11 +24,11 @@
         <a class="right carousel-control" href="#ex-carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
     </div>
 
-    <div ng-repeat="movie in mainCtrl.movieDetails">
-      <h1>{{movie.name}}</h1>
+    <div class="movie-display" ng-repeat="movie in mainCtrl.movieDetails">
+      <h4>{{movie.name}}</h4>
       <img src="{{movie.poster}}">
-      <h4>{{movie.genre}}</h4>
-      <a class="btn btn-info" style="padding: 10px; margin: 100px; font-size: 20px" ng-click="mainCtrl.sel(movie.name)" href="/datetime-select">BOOK NOW</a>
+      <h6>{{movie.genre}}</h6>
+      <a class="btn btn-info" ng-click="mainCtrl.sel(movie.name)" href="/datetime-select">BOOK NOW</a>
     </div>
 
 </div>

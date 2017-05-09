@@ -6,6 +6,15 @@ h2{
     font-family: fantasy;
 }
 
+img{
+  height: 200px;
+}
+
+.movie-display{
+  display: inline-block;
+  margin: 30px;
+}
+
 .navbar{
     margin: 0;
 }

@@ -7,40 +7,46 @@
       </div>
       <div class="modal-body">
         <ul class="modalUL">
-          <li class="modalLI" ng-repeat="n in [].constructor(10) track by $index" ng-click="seatSelectCtrl.sample($index+1)">{{$index+1}}</li>
+          <li class="modalLI" ng-repeat="n in [].constructor(10) track by $index" ng-click="seatSelectCtrl.getTotSeats($index+1)">{{$index+1}}</li>
         </ul>
       </div>
     </div>
   </div>
 </div>
 
+
 <div class="container" style="text-align:center">
-  <ol type="A">
-    <h4>PREMIUM [Rs. 300]</h4>
-    <li ng-repeat="n in [].constructor(2) track by $index">
-      <div class="seat" ng-repeat="n in [].constructor(10) track by $index">{{[].constructor(10).length-$index}}</div>
-      <div class="space"></div>
-      <div class="space"></div>
-      <div class="seat" ng-repeat="n in [].constructor(10) track by $index">{{$index+1}}</div>
-    </li>
-    <h4>GOLD [Rs. 210]</h4>
-    <li ng-repeat="n in [].constructor(3) track by $index">
-      <div class="seat" ng-repeat="n in [].constructor(10) track by $index">{{[].constructor(10).length-$index}}</div>
-      <div class="space"></div>
-      <div class="space"></div>
-      <div class="seat" ng-repeat="n in [].constructor(10) track by $index">{{$index+1}}</div>
-    </li>
-    <h4>SILVER [Rs. 180]</h4>
-    <li ng-repeat="n in [].constructor(10) track by $index">
-      <div class="seat" ng-repeat="n in [].constructor(10) track by $index">{{[].constructor(10).length-$index}}</div>
-      <div class="space"></div>
-      <div class="space"></div>
-      <div class="seat" ng-repeat="n in [].constructor(10) track by $index">{{$index+1}}</div>
-    </li>
-  </ol>
-</div>
 
-<div class="">
+  <div class="cont-left">
+    <ol type="A">
+      <h4>{{seatSelectCtrl.classType[0]}}</h4>
+      <li ng-repeat="r in seatSelectCtrl.generateArray(10) | limitTo:2:0">
+        <div class="seat" data-row="{{r}}" data-col="{{c}}" data-classType="{{seatSelectCtrl.classType[0]}}" ng-repeat="c in seatSelectCtrl.generateArray(20) | limitTo:10:0" ng-class="{'selected-cell': seatSelectCtrl.isSelected(r,c), 'booked-cell': seatSelectCtrl.isBooked(r,c)}" ng-click="seatSelectCtrl.onClick($event)">{{c}}</div>
+        <div class="space"></div>
+        <div class="seat" data-row="{{r}}" data-col="{{c}}" data-classType="{{seatSelectCtrl.classType[0]}}" ng-repeat="c in seatSelectCtrl.generateArray(20) | limitTo:20:10" ng-class="{'selected-cell': seatSelectCtrl.isSelected(r,c)}" ng-click="seatSelectCtrl.onClick($event)">{{c}}</div>
+      </li>
+      <div class="space"></div>
+      <h4>{{seatSelectCtrl.classType[1]}}</h4>
+      <li ng-repeat="r in seatSelectCtrl.generateArray(10) | limitTo:3:2">
+        <div class="seat" data-row="{{r}}" data-col="{{c}}" data-classType="{{seatSelectCtrl.classType[1]}}" ng-repeat="c in seatSelectCtrl.generateArray(20) | limitTo:10:0" ng-class="{'selected-cell': seatSelectCtrl.isSelected(r,c)}" ng-click="seatSelectCtrl.onClick($event)">{{c}}</div>
+        <div class="space"></div>
+        <div class="seat" data-row="{{r}}" data-col="{{c}}" data-classType="{{seatSelectCtrl.classType[1]}}" ng-repeat="c in seatSelectCtrl.generateArray(20) | limitTo:20:10" ng-class="{'selected-cell': seatSelectCtrl.isSelected(r,c)}" ng-click="seatSelectCtrl.onClick($event)">{{c}}</div>
+      </li>
+      <div class="space"></div>
+      <h4>{{seatSelectCtrl.classType[2]}}</h4>
+      <li ng-repeat="r in seatSelectCtrl.generateArray(10) | limitTo:5:5">
+        <div class="seat" data-row="{{r}}" data-col="{{c}}" data-classType="{{seatSelectCtrl.classType[2]}}" ng-repeat="c in seatSelectCtrl.generateArray(20) | limitTo:10:0" ng-class="{'selected-cell': seatSelectCtrl.isSelected(r,c)}" ng-click="seatSelectCtrl.onClick($event)">{{c}}</div>
+        <div class="space"></div>
+        <div class="seat" data-row="{{r}}" data-col="{{c}}" data-classType="{{seatSelectCtrl.classType[2]}}" ng-repeat="c in seatSelectCtrl.generateArray(20) | limitTo:20:10" ng-class="{'selected-cell': seatSelectCtrl.isSelected(r,c)}" ng-click="seatSelectCtrl.onClick($event)">{{c}}</div>
+      </li>
+      <div class="space"></div>
+    </ol>
+    <a class="btn btn-info" ng-click="seatSelectCtrl.submit()" href="/payment">CONFIRM</a>
+  </div>
 
-  payment
+  <div class="cont-right">
+    <h3>ORDER SUMMARY</h3>
+    <h5>{{seatSelectCtrl.selectedClass}}</h5>
+  </div>
+
 </div>

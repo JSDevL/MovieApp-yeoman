@@ -4,13 +4,11 @@
 
 <div class="tab-content">
   <div id="home" class="tab-pane">
-    <div ng-repeat="data in datetimeSelectCtrl.theaterData">
-      <table class="table">
-        <tr>
-          <td><h5>{{data.theater}}</h5></td>
-          <td ng-repeat="timing in data.times"><a ng-click="mainCtrl.sel(data.theater, timing)" href="/seat-select">{{timing}}</a></td>
-        </tr>
-      </table>
-    </div>
+    <table class="table" ng-repeat="data in datetimeSelectCtrl.theaterData">
+      <tr>
+        <td><h5>{{data.theater}}</h5></td>
+        <td ng-repeat="timing in data.times"><a ng-click="mainCtrl.sel(data.theater, timing)" href="/seat-select">{{timing}}</a></td>
+      </tr>
+    </table>
   </div>
 </div>
