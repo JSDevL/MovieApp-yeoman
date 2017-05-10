@@ -21,7 +21,7 @@
     <ol type="A">
       <h4>{{seatSelectCtrl.classType[0]}}</h4>
       <li ng-repeat="r in seatSelectCtrl.generateArray(10) | limitTo:2:0">
-        <div class="seat" data-row="{{r}}" data-col="{{c}}" data-classType="{{seatSelectCtrl.classType[0]}}" ng-repeat="c in seatSelectCtrl.generateArray(20) | limitTo:10:0" ng-class="{'selected-cell': seatSelectCtrl.isSelected(r,c), 'booked-cell': seatSelectCtrl.isBooked(r,c)}" ng-click="seatSelectCtrl.onClick($event)">{{c}}</div>
+        <div class="seat crossOut" data-row="{{r}}" data-col="{{c}}" data-classType="{{seatSelectCtrl.classType[0]}}" ng-repeat="c in seatSelectCtrl.generateArray(20) | limitTo:10:0" ng-class="{'selected-cell': seatSelectCtrl.isSelected(r,c), 'booked-cell': seatSelectCtrl.isBooked(r,c)}" ng-click="seatSelectCtrl.onClick($event)">{{c}}</div>
         <div class="space"></div>
         <div class="seat" data-row="{{r}}" data-col="{{c}}" data-classType="{{seatSelectCtrl.classType[0]}}" ng-repeat="c in seatSelectCtrl.generateArray(20) | limitTo:20:10" ng-class="{'selected-cell': seatSelectCtrl.isSelected(r,c), 'booked-cell': seatSelectCtrl.isBooked(r,c)}" ng-click="seatSelectCtrl.onClick($event)">{{c}}</div>
       </li>
@@ -47,8 +47,21 @@
   <div class="cont-right">
     <h3>ORDER SUMMARY</h3>
     <div class="sub-cont">
-      <h5>{{seatSelectCtrl.selectedClass}}</h5>
-      <h5>{{seatSelectCtrl.selectedTheater}}</h5>
+      <h5>You have chosen to watch <span style="font-size:1.75rem">{{seatSelectCtrl.selectedMovie}}</span></h5>
+      <h5>at <span style="font-size:1.75rem">{{seatSelectCtrl.selectedTheater}}</span></h5>
+      <h5>on <span style="font-size:1.75rem">{{seatSelectCtrl.selectedDate}}, {{seatSelectCtrl.selectedTime}}</span></h5>
+    </div>
+    <div class="sub-cont" ng-show="seatSelectCtrl.showPrice" style="padding-bottom: 40px;">
+      <h4>{{seatSelectCtrl.selectedClass}}</h4>
+      <p class="seat-no" ng-repeat="seat in seatSelectCtrl.seatNos">{{seat}} </p>
+    </div>
+    <div class="sub-cont" ng-show="seatSelectCtrl.showPrice">
+      <h5>Ticket Price : <span style="font-size:1.5rem">Rs.{{seatSelectCtrl.price}}</span></h5>
+      <h5>Service Tax : <span style="font-size:1.5rem">Rs.4</span></h5>
+      <h5>Convenience Fee: <span style="font-size:1.5rem">Rs.15</span></h5>
+    </div>
+    <div ng-show="seatSelectCtrl.showPrice">
+      <h4>Total Amount: Rs.{{seatSelectCtrl.totPrice}}</h4>
     </div>
   </div>
 

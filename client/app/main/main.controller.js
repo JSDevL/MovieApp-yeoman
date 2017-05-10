@@ -10,6 +10,7 @@
       this.movieDetails = [];
       this.movie;
       this.booking = booking;
+
     }
 
     $onInit() {
@@ -23,7 +24,7 @@
           } else{
             this.movieNames = [ele.movie];
           }
-        };
+        }
       });
       this.$http.get('/api/main-endpoints').then(response => {
         this.moviesData = response.data;

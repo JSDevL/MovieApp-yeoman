@@ -21,7 +21,7 @@ class SeatSelectComponent {
     this.booking = booking;
     this.$http = $http;
     this.bookedSeats = [];
-    this.selectedTheater;
+    this.seatNos = [];
   }
 
   $onInit() {
@@ -29,28 +29,50 @@ class SeatSelectComponent {
     console.log(this.totSeats);
     this.$http.get('/api/payment-endpoints').then(response => {
       this.bookedSeats = response.data;
-      console.log(response.data);
     });
     this.selectedTheater = this.booking.myFunc.selectedTheater;
-    console.log(this.selectedTheater);
+    this.selectedMovie = this.booking.myFunc.selectedMovie;
+    this.selectedDate = this.booking.myFunc.selectedDate;
+    this.selectedTime = this.booking.myFunc.selectedTime;
   }
 
   onClick(e){
-    if ($(e.target).hasClass('selected-cell')){
+    console.log(this.count);
+    var singlePrice = parseInt($(e.target).attr('data-classType').slice(-4,-1));
+    if(this.count==0){
+      this.showPrice=false;
+    }
+    /*    if selected   */
+    if($(e.target).hasClass('selected-cell')){
       this.count--;
+      if(this.count==0){
+        this.showPrice=false;
+      }
+      this.price = singlePrice/this.count;
+      this.totPrice = this.price+4+15;
+      this.seatNos = this.seatNos.filter(function(no){
+        var row = parseInt(no.substr(0, 1).charCodeAt(0) - 65);
+        var col = parseInt(no.substr(1));
+        return (row != $(e.target).attr('data-row') || col != $(e.target).attr('data-col'));
+      });
       this.selectedSeats = this.selectedSeats.filter(function(seat){
         return (seat.row != $(e.target).attr('data-row')) || (seat.col != $(e.target).attr('data-col'));
       });
     }
+    /*    if unselected   */
     else{
+      /*    if class mismatch   */
       if(this.selectedSeats.length){
         for(let ele of this.selectedSeats){
           if(ele.classType !== $(e.target).attr('data-classType')){
             this.selectedSeats=[];
+            this.seatNos=[];
             this.count=0;
+            console.log(this.count);
           }
         }
       }
+      /*    to select   */
       if (this.count<this.totSeats){
         this.selectedSeats.push({
           row: $(e.target).attr('data-row'),
@@ -58,9 +80,14 @@ class SeatSelectComponent {
           classType: $(e.target).attr('data-classType')
         });
         this.count++;
-        this.selectedClass = $(e.target).attr('data-classType').slice(0,-9);
-
+        console.log(this.count);
+        this.showPrice = true;
+        this.selectedClass = $(e.target).attr('data-classType').slice(0,-9).concat(" CLASS");
+        this.price = singlePrice*this.count;
+        this.totPrice = this.price+4+15;
+        this.seatNos.push(String.fromCharCode(65 + parseInt($(e.target).attr('data-row')))+$(e.target).attr('data-col'));
       }
+      /*    if selecting more that count   */
       else{
         window.alert("Can't select more seats. Please increase the number of tickets needed.");
       }
@@ -87,10 +114,6 @@ class SeatSelectComponent {
         }
       }
     }
-    // for(let seat of this.bookedSeats){
-    //   // row = seat.substr(0, 1).charCodeAt(0) - 65;
-    //   console.log(seat);
-    // }
     return false;
   }
 
