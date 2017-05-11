@@ -50,11 +50,25 @@
       this.theaterName=theaterName;
       this.datesList=[];
       this.timesList=[];
+      function addZero(i) {
+        if (i < 10) {
+          i = "0" + i;
+        } return i;
+      }
       if(this.boundData.length){
         for(let ele of this.boundData){
           if(ele.city===this.cityName && ele.movie===this.movieName && ele.theater===theaterName){
-            this.datesList.push(...ele.dates);
+            for(let dateEle of ele.dates){
+              var d = addZero(new Date(dateEle).getDate());
+              var m = addZero(new Date(dateEle).getMonth()+1);
+              var y = new Date(dateEle).getFullYear();
+              var fullDate = d+"."+m+"."+y;
+              this.datesList.push(fullDate);
+            }
+            // this.datesList.push(...ele.dates);
             this.timesList = ele.times;
+            console.log(this.datesList);
+            console.log(this.timesList);
           }
         }
       }
@@ -66,10 +80,10 @@
           i = "0" + i;
         } return i;
       }
-      var date = addZero(new Date(this.date).getDate());
-      var month = addZero(new Date(this.date).getMonth()+1);
-      var year = new Date(this.date).getFullYear();
-      var fullDate = date+"."+month+"."+year;
+      var d = addZero(new Date(this.date).getDate());
+      var m = addZero(new Date(this.date).getMonth()+1);
+      var y = new Date(this.date).getFullYear();
+      var fullDate = d+"."+m+"."+y;
       this.datesList.push(fullDate);
       this.ogDatesList.push(this.date);
       this.date='';

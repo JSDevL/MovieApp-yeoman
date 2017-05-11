@@ -59,20 +59,29 @@ class DatetimeSelectComponent {
   }
 
   getTheaterDetails(date){
-    this.booking.myFunc.selectedDate = date;
-    this.theaterData = [];
-    var fullDate = new Date(date);
-    for(let ele of this.boundData){
-      console.log(ele);
-      console.log(fullDate);
-      // if(ele.movie===this.movie && ele.dates.includes(date)){
-      //   if(this.theaterData.length){
-      //     this.theaterData.push(ele);
-      //   } else{
-      //     this.theaterData = [ele];
-      //   }
-      // }
+    function addZero(i) {
+      if (i < 10) {
+        i = "0" + i;
+      } return i;
     }
+    this.booking.myFunc.selectedDate = date;
+    this.theatersData = [];
+    for(let ele of this.boundData){
+      if(ele.movie===this.movie){
+        for(let dateEle of ele.dates){
+          var d = addZero(new Date(dateEle).getDate());
+          var m = addZero(new Date(dateEle).getMonth());
+          var y = new Date(dateEle).getFullYear();
+          var fullDate = d+"."+m+"."+y
+          console.log(date);
+          console.log(fullDate);
+          if(date===fullDate){
+            this.theatersData.push(ele);
+          }
+        }
+      }
+    }
+    console.log(this.theatersData);
   }
 
   sel(theater, timing) {

@@ -1,14 +1,12 @@
 <ul class="nav nav-pills">
-  <li ng-repeat="date in datetimeSelectCtrl.newDates"><a ng-click="datetimeSelectCtrl.getTheaterDetails(date)" data-toggle="pill" href="#home">{{date}}</a></li>
+  <li ng-repeat="date in datetimeSelectCtrl.newDates"><a ng-click="datetimeSelectCtrl.getTheaterDetails(date)" data-toggle="pill">{{date}}</a></li>
 </ul>
 
-<div class="tab-content">
-  <div id="home" class="tab-pane">
-    <table class="table" ng-repeat="data in datetimeSelectCtrl.theaterData">
-      <tr>
-        <td><h5>{{data.theater}}</h5></td>
-        <td ng-repeat="timing in data.times"><a ng-click="datetimeSelectCtrl.sel(data.theater, timing)">{{timing}}</a></td>
-      </tr>
-    </table>
-  </div>
+<div id="theater" ng-repeat="data in datetimeSelectCtrl.theatersData">
+  <table class="table">
+    <tr>
+      <td><h5>{{data.theater}}</h5></td>
+      <td ng-repeat="timing in data.times"><a ng-click="datetimeSelectCtrl.sel(data.theater, timing)">{{timing}}</a></td>
+    </tr>
+  </table>
 </div>
