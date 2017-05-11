@@ -4,19 +4,19 @@
 
 .cont-left {
   display: inline-block;
-  float: left;
 }
 
 ol {
   color: lightgrey;
 }
 
-h3 {
+.summary-title {
   font-family:'courier new';
   border-top: 1px dashed lightgrey;
   border-bottom: 1px dashed lightgrey;
   margin: 0 0 20px 0;
   padding: 10px 0 5px 0;
+  text-align: center;
 }
 
 h4, h5{
@@ -71,10 +71,14 @@ h4, h5{
 
 .cont-right {
   width: 400px;
-  height: 364px;
-  background-color: #f2f2f2;
   display: inline-block;
   float: right;
+  text-align: center;
+}
+
+.order-summary{
+  height: 364px;
+  background-color: #f2f2f2;
 }
 
 .sub-cont {

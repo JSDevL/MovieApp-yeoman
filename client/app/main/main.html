@@ -1,34 +1,33 @@
-<header class="hero-unit" id="banner">
-  <div class="container">
+<div class="container">
 
-    <div id="ex-carousel" class="carousel slide" style="height: 450px; margin-top:50px;">
-        <ol class="carousel-indicators">
-            <li data-target="#ex-carousel" data-slide-to="0" class="active"></li>
-            <li data-target="#ex-carousel" data-slide-to="1"></li>
-            <li data-target="#ex-carousel" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner" style="height: 450px;">
-            <div class="item active car-div">
-                <img class="car-img" src="assets/images/img1.png">
-            </div>
+  <div id="ex-carousel" class="carousel slide" style="height: 450px; margin-top:50px;">
+      <ol class="carousel-indicators">
+          <li data-target="#ex-carousel" data-slide-to="0" class="active"></li>
+          <li data-target="#ex-carousel" data-slide-to="1"></li>
+          <li data-target="#ex-carousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" style="height: 450px;">
+          <div class="item active car-div">
+              <img class="car-img" src="assets/images/img1.png">
+          </div>
 
-            <div class="item">
-                <img class="car-img" src="assets/images/img2.jpg">
-            </div>
+          <div class="item">
+              <img class="car-img" src="assets/images/img2.jpg">
+          </div>
 
-            <div class="item">
-                <img class="car-img" src="assets/images/img3.jpg">
-            </div>
-        </div>
-        <a class="left carousel-control" href="#ex-carousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-        <a class="right carousel-control" href="#ex-carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-    </div>
+          <div class="item">
+              <img class="car-img" src="assets/images/img3.jpg">
+          </div>
+      </div>
+      <a class="left carousel-control" href="#ex-carousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#ex-carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+  </div>
 
-    <div class="movie-display" ng-repeat="movie in mainCtrl.movieDetails">
-      <h4>{{movie.name}}</h4>
-      <img src="{{movie.poster}}">
-      <h6>{{movie.genre}}</h6>
-      <a class="btn btn-info" ng-click="mainCtrl.sel(movie.name)" href="/datetime-select">BOOK NOW</a>
-    </div>
+  <div class="movie-display" ng-repeat="movie in mainCtrl.movieDetails">
+    <h4>{{movie.name}}</h4>
+    <img src="{{movie.poster}}">
+    <h6>{{movie.genre}}</h6>
+    <a class="btn btn-info" ng-click="mainCtrl.sel(movie.name)" href="/datetime-select">BOOK NOW</a>
+  </div>
 
 </div>

@@ -85,7 +85,7 @@ class SeatSelectComponent {
         this.selectedClass = $(e.target).attr('data-classType').slice(0,-9).concat(" CLASS");
         this.price = singlePrice*this.count;
         this.totPrice = this.price+4+15;
-        this.seatNos.push(String.fromCharCode(65 + parseInt($(e.target).attr('data-row')))+$(e.target).attr('data-col'));
+        this.seatNos.push(String.fromCharCode(64 + parseInt($(e.target).attr('data-row')))+$(e.target).attr('data-col'));
       }
       /*    if selecting more that count   */
       else{
@@ -124,11 +124,10 @@ class SeatSelectComponent {
   }
 
   submit() {
-    var seatNo = [];
-    for(let ele of this.selectedSeats){
-      seatNo.push(String.fromCharCode(65 + (ele.row-1))+ele.col);
-    }
-    this.booking.myFunc.bookedSeats = seatNo;
+    this.booking.myFunc.selectedClass = this.selectedClass;
+    this.booking.myFunc.selectedSeats = this.seatNos;
+    this.booking.myFunc.totPrice = this.totPrice;
+    this.booking.myFunc.price = this.price;
   }
 
 }

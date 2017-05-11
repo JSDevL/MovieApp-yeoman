@@ -1,3 +1,82 @@
-<div>This is the payment view.</div>
-{{paymentCtrl.h}}
-<button ng-click="paymentCtrl.submit()">submit</button>
+<div class="container">
+
+  <div class="pay-cont-left">
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <span class="glyphicon glyphicon-chevron-down"></span>
+        <h3 style="display:inline;" class="panel-title">Contact Details</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row" style="margin:30px;">
+          <div class="col-md-4">
+            <input type="text" placeholder="Email" class="form-control"/>
+          </div>
+
+          <div class="col-md-4">
+            <input type="text" placeholder="Phone Number" class="form-control"/>
+          </div>
+
+          <div class="col-md-4">
+            <button class="btn btn-contact" type="submit">CONTINUE</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default pay-panel">
+      <div class="panel-heading">
+        <span class="glyphicon glyphicon-chevron-down"></span>
+        <h3 style="display:inline;" class="panel-title">Payment Information</h3>
+      </div>
+      <div class="panel-body">
+        <div class="panel-left list-group">
+          <a class="list-group-item selected" ng-click="paymentCtrl.toggle('credit')">Credit/Debit</a>
+          <a class="list-group-item" ng-click="paymentCtrl.toggle('cash')">Cash</a>
+          <a class="list-group-item"ng-click="paymentCtrl.toggle('gv')">Gift Voucher</a>
+        </div>
+        <div class="panel-right">
+          <div ng-show="paymentCtrl.credit">
+            Enter your card details
+            <div class="card-det">
+              <input style="width:320px; margin:20px 5px;" class="card-inp form-control" type="text" placeholder="Credit card number"/>
+              <input style="width:320px; margin:20px 5px;" class="card-inp form-control" type="text" placeholder="Name on the card"/>
+              Expiry
+              <input style="width:50px; margin:1px; display:inline;" class="card-inp form-control" type="text" placeholder="MM"/>
+              <input style="width:50px; margin:1px; display:inline;" class="card-inp form-control" type="text" placeholder="YY"/>
+              <input style="width:55px; margin-left:50px; display:inline;" class="card-inp form-control" type="text" placeholder="CVV"/>
+            </div>
+          </div>
+          <div style="margin-top:50px;" ng-show="paymentCtrl.cash">
+            Make the payment when you collect your ticket(s).
+          </div>
+          <div ng-show="paymentCtrl.gv">
+            <input style="width:320px; margin:50px 0;" type="text" placeholder="Gift Voucher Number" class="form-control"/>
+            <button class="btn btn-contact" type="submit">CONTINUE</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="cont-right">
+    <h3 class="summary-title">ORDER SUMMARY</h3>
+    <div class="sub-cont">
+      <h5>You have chosen to watch <span style="font-size:1.75rem">{{paymentCtrl.selectedMovie}}</span></h5>
+      <h5>at <span style="font-size:1.75rem">{{paymentCtrl.selectedTheater}}</span></h5>
+      <h5>on <span style="font-size:1.75rem">{{paymentCtrl.selectedDate}}, {{paymentCtrl.selectedTime}}</span></h5>
+    </div>
+    <div class="sub-cont" style="padding-bottom: 40px;">
+      <h4>{{paymentCtrl.selectedClass}}</h4>
+      <p class="seat-no" ng-repeat="seat in paymentCtrl.selectedSeats">{{seat}} </p>
+    </div>
+    <div class="sub-cont">
+      <h5>Ticket Price : <span style="font-size:1.5rem">Rs.{{paymentCtrl.price}}</span></h5>
+      <h5>Service Tax : <span style="font-size:1.5rem">Rs.4</span></h5>
+      <h5>Convenience Fee: <span style="font-size:1.5rem">Rs.15</span></h5>
+    </div>
+      <h4>Total Amount: Rs.{{paymentCtrl.totPrice}}</h4>
+  </div>
+
+</div>

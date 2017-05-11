@@ -6,7 +6,10 @@ function bookingService() {
       this.selectedTheater = '';
       this.selectedDate = '';
       this.selectedTime = '';
-      this.bookedSeats = [];
+      this.selectedClass = '';
+      this.selectedSeats = [];
+      this.price = '';
+      this.totPrice = '';
     };
 }
 

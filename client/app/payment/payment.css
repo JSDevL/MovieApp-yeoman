@@ -1,0 +1,58 @@
+#heading {
+  border: none;
+  font-family:'courier new';
+  color: black;
+}
+
+.btn.btn-contact{
+  background-color: #555555;
+  color: white;
+}
+
+.panel-default {
+  border-color: #46b8da;
+  position: relative;
+}
+
+.pay-panel {
+  height: 300px;
+}
+
+.panel-default .panel-heading {
+  background-color: #46b8da;
+  color: white;
+}
+
+.pay-cont-left {
+  width: 800px;
+  display: inline-block;
+}
+
+.pay-sub-cont {
+  margin: 0 30px;
+  text-align: left;
+  border-bottom: 1px dashed lightgrey;
+}
+
+.panel-left {
+  width: 200px;
+  float: left;
+  position: absolute;
+  top: 50%;
+  height: 100px;
+  margin-top: -50px;
+}
+
+.panel-right {
+  width: 500px;
+  float: right;
+  top: 50%;
+}
+
+.card-det {
+  padding: 10px;
+  height: 200px;
+  width: 350px;
+  background-color: lightgrey;
+  border-radius: 5px;
+}
