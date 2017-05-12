@@ -9,35 +9,44 @@
       this.movieNames = [];
       this.movieDetails = [];
       this.movie;
+      this.cityName;
       this.booking = booking;
 
     }
 
     $onInit() {
+      $('#myModal').modal();
+      this.$http.get('/api/cities').then(response => {
+        this.citiesData = response.data;
+        this.socket.syncUpdates('city', this.citiesData);
+      });
       this.$http.get('/api/movie-theater-endpoints').then(response => {
         this.boundData = response.data;
-        for(let ele of this.boundData){
-          if(this.movieNames.length){
-            if(this.movieNames.includes(ele.movie)===false){
-              this.movieNames.push(ele.movie);
-            }
-          } else{
-            this.movieNames = [ele.movie];
-          }
-        }
       });
       this.$http.get('/api/main-endpoints').then(response => {
         this.moviesData = response.data;
-        for(let elem of this.moviesData){
-          if(this.movieNames.includes(elem.name)){
-            if(this.movieDetails.length){
-              this.movieDetails.push(elem);
-            } else{
-              this.movieDetails = [elem];
-            }
+      });
+    }
+
+    selCity() {
+      $('#myModal').modal('hide');
+      for(let ele of this.boundData){
+        if(ele.city===this.cityName){
+          if(this.movieNames.includes(ele.movie)===false){
+            this.movieNames.push(ele.movie);
           }
         }
-      });
+      }
+
+      for(let elem of this.moviesData){
+        if(this.movieNames.includes(elem.name)){
+          if(this.movieDetails.length){
+            this.movieDetails.push(elem);
+          } else{
+            this.movieDetails = [elem];
+          }
+        }
+      }
     }
 
     sel(movie) {

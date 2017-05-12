@@ -1,5 +1,21 @@
-<div class="container">
+<!-- Modal -->
+<div class="modal fade" data-backdrop="static" id="myModal" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Choose your city</h4>
+      </div>
+      <div class="modal-body form-group">
+        <select class="form-control" ng-model="mainCtrl.cityName">
+          <option ng-repeat="city in mainCtrl.citiesData" value="{{city.name}}">{{city.name}}</option>
+        </select>
+        <button class="form-control btn btn-default" ng-click="mainCtrl.selCity()">Select</button>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="container">
   <div id="ex-carousel" class="carousel slide" style="height: 450px; margin-top:50px;">
       <ol class="carousel-indicators">
           <li data-target="#ex-carousel" data-slide-to="0" class="active"></li>
@@ -29,5 +45,4 @@
     <h6>{{movie.genre}}</h6>
     <a class="btn btn-info" ng-click="mainCtrl.sel(movie.name)" href="/datetime-select">BOOK NOW</a>
   </div>
-
 </div>
