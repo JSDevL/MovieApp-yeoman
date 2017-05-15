@@ -18,13 +18,20 @@
       $('#myModal').modal();
       this.$http.get('/api/cities').then(response => {
         this.citiesData = response.data;
-        this.socket.syncUpdates('city', this.citiesData);
+        // this.socket.syncUpdates('city', this.citiesData);
       });
       this.$http.get('/api/movie-theater-endpoints').then(response => {
         this.boundData = response.data;
       });
-      this.$http.get('/api/main-endpoints').then(response => {
+      this.$http.get('/api/movie-endpoints').then(response => {
         this.moviesData = response.data;
+      });
+    }
+
+    rate() {
+      $("#rateYo").rateYo({
+        rating: 3.6,
+        starWidth: "20px"
       });
     }
 

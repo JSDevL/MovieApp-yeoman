@@ -3,9 +3,10 @@
 (function(){
 
 class PaymentComponent {
-  constructor($http, booking) {
+  constructor($http, $location, booking) {
     this.$http = $http;
     this.booking = booking;
+    this.$location = $location;
   }
 
   $onInit() {
@@ -41,6 +42,7 @@ class PaymentComponent {
     this.$http.post('/api/payment-endpoints', {
       seatNos: this.selectedSeats
     });
+    this.$location.path('/receipt');
   }
 
 }

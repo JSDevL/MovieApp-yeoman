@@ -17,12 +17,11 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
+  require('../api/movie-endpoint/movie-endpoint.socket').register(socket);
   require('../api/payment-endpoint/payment-endpoint.socket').register(socket);
   require('../api/movie-theater-endpoint/movie-theater-endpoint.socket').register(socket);
   require('../api/city/city.socket').register(socket);
   require('../api/theater-endpoint/theater-endpoint.socket').register(socket);
-  require('../api/main-endpoint/main-endpoint.socket').register(socket);
-  require('../api/admin-view-endpoint/admin-view-endpoint.socket').register(socket);
   require('../api/thing/thing.socket').register(socket);
 
 }

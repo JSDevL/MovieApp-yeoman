@@ -41,7 +41,7 @@ class DatetimeSelectComponent {
           this.filteredDates[i+1] = temp;
         }
       }
-      
+
       function addZero(i) {
         if (i < 10) {
           i = "0" + i;

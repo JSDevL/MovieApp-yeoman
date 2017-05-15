@@ -2,11 +2,11 @@
 
 import mongoose from 'mongoose';
 
-var MoviesModelSchema = new mongoose.Schema({
+var MovieEndpointSchema = new mongoose.Schema({
   name: String,
   genre: String,
   date: String,
   poster: String
 });
 
-export default mongoose.model('moviedetails', MoviesModelSchema);
+export default mongoose.model('moviedetails', MovieEndpointSchema);

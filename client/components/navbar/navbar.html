@@ -12,17 +12,12 @@
     <div uib-collapse="nav.isCollapsed" class="navbar-collapse collapse" id="navbar-main">
       <ul class="nav navbar-nav">
        <li><a href="/">HOME</a></li>
-       <li><a href="/datetime-select">BOOK</a></li>
-       <li><a href="/seat-select">SEAT</a></li>
-       <li class="dropdown">
-         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ADMIN<span class="caret"></span></a>
-         <ul class="dropdown-menu">
-           <li ng-repeat="item in nav.menu" ng-class="{active: nav.isActive(item.link)}">
-               <a ng-href="{{item.link}}">{{item.title}}</a>
-           </li>
-         </ul>
-       </li>
+       <li ng-show="nav.getCurrentUser().role === 'user'"><a href="/">ORDER HISTORY</a></li>
+       <li ng-show="nav.isAdmin()"><a href="/movie">MOVIE</a></li>
+       <li ng-show="nav.isAdmin()"><a href="/theater">THEATER</a></li>
+       <li ng-show="nav.isAdmin()"><a href="/movie-theater">MOVIE-THEATER</a></li>
       </ul>
+
 
       <ul class="nav navbar-nav navbar-right">
         <li ng-hide="nav.isLoggedIn()" ng-class="{active: nav.isActive('/signup')}"><a href="/signup">Sign up</a></li>
@@ -31,6 +26,15 @@
         <li ng-show="nav.isLoggedIn()" ng-class="{active: nav.isActive('/settings')}"><a href="/settings"><span class="glyphicon glyphicon-cog"></span></a></li>
         <li ng-show="nav.isLoggedIn()"><a href="/logout">Logout</a></li>
       </ul>
+
+
+      <!-- <ul class="nav navbar-nav navbar-right">
+        <li ng-hide="nav.isLoggedIn()" ng-class="{active: nav.isActive('/signup')}"><a href="/signup">Sign up</a></li>
+        <li ng-hide="nav.isLoggedIn()" ng-class="{active: nav.isActive('/login')}"><a href="/login">Login</a></li>
+        <li ng-show="nav.isLoggedIn()"><p class="navbar-text">Hello {{ nav.getCurrentUser().name }}</p> </li>
+        <li ng-show="nav.isLoggedIn()" ng-class="{active: nav.isActive('/settings')}"><a href="/settings"><span class="glyphicon glyphicon-cog"></span></a></li>
+        <li ng-show="nav.isLoggedIn()"><a href="/logout">Logout</a></li>
+      </ul> -->
     </div>
   </div>
 </div>

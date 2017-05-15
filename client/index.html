@@ -18,7 +18,7 @@
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
       <link rel="stylesheet" href="app/app.css">
-      <link href="app/admin-view/admin-view.css" rel="stylesheet" type="text/css">
+      <link href="app/movie/movie.css" rel="stylesheet" type="text/css">
       <link href="app/datetime-select/datetime-select.css" rel="stylesheet" type="text/css">
       <link href="app/main/main.css" rel="stylesheet" type="text/css">
       <link href="app/movie-theater/movie-theater.css" rel="stylesheet" type="text/css">
@@ -26,6 +26,18 @@
       <link href="app/seat-select/seat-select.css" rel="stylesheet" type="text/css">
       <link href="app/theater/theater.css" rel="stylesheet" type="text/css">
       <!-- injector:css -->
+      <link rel="stylesheet" href="app/admin-view/admin-view.css">
+      <link rel="stylesheet" href="app/admin/admin.css">
+      <link rel="stylesheet" href="app/app.css">
+      <link rel="stylesheet" href="app/datetime-select/datetime-select.css">
+      <link rel="stylesheet" href="app/main/main.css">
+      <link rel="stylesheet" href="app/movie-theater/movie-theater.css">
+      <link rel="stylesheet" href="app/movie/movie.css">
+      <link rel="stylesheet" href="app/payment/payment.css">
+      <link rel="stylesheet" href="app/receipt/receipt.css">
+      <link rel="stylesheet" href="app/seat-select/seat-select.css">
+      <link rel="stylesheet" href="app/theater/theater.css">
+      <link rel="stylesheet" href="components/footer/footer.css">
       <!-- endinjector -->
     <!-- endbuild -->
   </head>
@@ -90,8 +102,12 @@
       <script src="app/main/main.js"></script>
       <script src="app/movie-theater/movie-theater.controller.js"></script>
       <script src="app/movie-theater/movie-theater.js"></script>
+      <script src="app/movie/movie.controller.js"></script>
+      <script src="app/movie/movie.js"></script>
       <script src="app/payment/payment.controller.js"></script>
       <script src="app/payment/payment.js"></script>
+      <script src="app/receipt/receipt.controller.js"></script>
+      <script src="app/receipt/receipt.js"></script>
       <script src="app/seat-select/seat-select.controller.js"></script>
       <script src="app/seat-select/seat-select.js"></script>
       <script src="app/theater/theater.controller.js"></script>
@@ -108,7 +124,10 @@
       <script src="components/util/util.service.js"></script>
       <!-- endinjector -->
     <!-- endbuild -->
-
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
     <link href="app/main/main.css" rel="stylesheet" type="text/css">
 
   </body>

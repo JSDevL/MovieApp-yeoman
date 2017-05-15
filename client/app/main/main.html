@@ -35,8 +35,8 @@
               <img class="car-img" src="assets/images/img3.jpg">
           </div>
       </div>
-      <a class="left carousel-control" href="#ex-carousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-      <a class="right carousel-control" href="#ex-carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+      <!-- <a class="left carousel-control" href="#ex-carousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#ex-carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a> -->
   </div>
 
   <div class="movie-display" ng-repeat="movie in mainCtrl.movieDetails">
@@ -44,5 +44,9 @@
     <img src="{{movie.poster}}">
     <h6>{{movie.genre}}</h6>
     <a class="btn btn-info" ng-click="mainCtrl.sel(movie.name)" href="/datetime-select">BOOK NOW</a>
+    <a class="btn btn-info" ng-click="mainCtrl.rate()">RATE</a>
+    <div id="rateYo">
+
+    </div>
   </div>
 </div>

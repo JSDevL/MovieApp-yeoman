@@ -11,7 +11,7 @@ class SeatSelectComponent {
     return ar;
   }
 
-  constructor($http, booking) {
+  constructor($http, $location, booking) {
     this.totSeats = 1;
     this.count = 0;
     this.clicked = false;
@@ -20,6 +20,7 @@ class SeatSelectComponent {
     this.selectedClass;
     this.booking = booking;
     this.$http = $http;
+    this.$location = $location;
     this.bookedSeats = [];
     this.seatNos = [];
   }
@@ -128,6 +129,7 @@ class SeatSelectComponent {
     this.booking.myFunc.selectedSeats = this.seatNos;
     this.booking.myFunc.totPrice = this.totPrice;
     this.booking.myFunc.price = this.price;
+    this.$location.path('/payment');
   }
 
 }

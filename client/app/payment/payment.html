@@ -57,26 +57,28 @@
         </div>
       </div>
     </div>
-
   </div>
 
   <div class="cont-right">
-    <h3 class="summary-title">ORDER SUMMARY</h3>
-    <div class="sub-cont">
-      <h5>You have chosen to watch <span style="font-size:1.75rem">{{paymentCtrl.selectedMovie}}</span></h5>
-      <h5>at <span style="font-size:1.75rem">{{paymentCtrl.selectedTheater}}</span></h5>
-      <h5>on <span style="font-size:1.75rem">{{paymentCtrl.selectedDate}}, {{paymentCtrl.selectedTime}}</span></h5>
-    </div>
-    <div class="sub-cont" style="padding-bottom: 40px;">
-      <h4>{{paymentCtrl.selectedClass}}</h4>
-      <p class="seat-no" ng-repeat="seat in paymentCtrl.selectedSeats">{{seat}} </p>
-    </div>
-    <div class="sub-cont">
-      <h5>Ticket Price : <span style="font-size:1.5rem">Rs.{{paymentCtrl.price}}</span></h5>
-      <h5>Service Tax : <span style="font-size:1.5rem">Rs.4</span></h5>
-      <h5>Convenience Fee: <span style="font-size:1.5rem">Rs.15</span></h5>
-    </div>
+    <div class="order-sum">
+      <h3 class="summary-title">ORDER SUMMARY</h3>
+      <div class="sub-cont">
+        <h5>You have chosen to watch <span style="font-size:1.75rem">{{paymentCtrl.selectedMovie}}</span></h5>
+        <h5>at <span style="font-size:1.75rem">{{paymentCtrl.selectedTheater}}</span></h5>
+        <h5>on <span style="font-size:1.75rem">{{paymentCtrl.selectedDate}}, {{paymentCtrl.selectedTime}}</span></h5>
+      </div>
+      <div class="sub-cont" style="padding-bottom: 40px;">
+        <h4>{{paymentCtrl.selectedClass}}</h4>
+        <p class="seat-no" ng-repeat="seat in paymentCtrl.selectedSeats">{{seat}} </p>
+      </div>
+      <div class="sub-cont">
+        <h5>Ticket Price : <span style="font-size:1.5rem">Rs.{{paymentCtrl.price}}</span></h5>
+        <h5>Service Tax : <span style="font-size:1.5rem">Rs.4</span></h5>
+        <h5>Convenience Fee: <span style="font-size:1.5rem">Rs.15</span></h5>
+      </div>
       <h4>Total Amount: Rs.{{paymentCtrl.totPrice}}</h4>
+    </div>
+    <a style="margin-top:30px;" class="btn btn-info" ng-click="paymentCtrl.submit()" >CONFIRM</a>
   </div>
 
 </div>

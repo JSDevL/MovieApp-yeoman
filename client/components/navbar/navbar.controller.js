@@ -2,20 +2,6 @@
 
 class NavbarController {
   //start-non-standard
-  menu = [
-  {
-    'title': 'MOVIES',
-    'link': '/admin-view'
-  },
-  {
-    'title': 'THEATERS',
-    'link': '/theater'
-  },
-  {
-    'title': 'MOVIE-THEATERS',
-    'link': '/movie-theater'
-  }
-  ];
 
   isCollapsed = true;
   //end-non-standard
@@ -24,6 +10,7 @@ class NavbarController {
     this.$location = $location;
     this.isLoggedIn = Auth.isLoggedIn;
     this.isAdmin = Auth.isAdmin;
+    this.hasRole = Auth.hasRole;
     this.getCurrentUser = Auth.getCurrentUser;
   }
 
