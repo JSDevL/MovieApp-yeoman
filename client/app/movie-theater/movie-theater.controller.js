@@ -17,16 +17,16 @@
       this.timesList = [];
 
       $scope.$on('$destroy', function(){
-        socket.unsyncUpdates('adminViewEndpoint');
+        socket.unsyncUpdates('movieEndpoint');
         socket.unsyncUpdates('city');
         socket.unsyncUpdates('movieTheaterEndpoint');
       });
     }
 
     $onInit() {
-      this.$http.get('/api/admin-view-endpoints').then(response => {
+      this.$http.get('/api/movie-endpoints').then(response => {
         this.moviesData = response.data;
-        this.socket.syncUpdates('adminViewEndpoint', this.moviesData);
+        this.socket.syncUpdates('movieEndpoint', this.moviesData);
       });
       this.$http.get('/api/cities').then(response => {
         this.citiesData = response.data;
@@ -121,7 +121,7 @@
               dates: this.ogDatesList,
               times: this.timesList
             });
-          } else if(ele.city!==this.cityName || ele.movie!==this.movieName || ele.theater!==this.theaterName){
+          } else{
             console.log("B");
             this.$http.post('/api/movie-theater-endpoints', {
               city: this.cityName,

@@ -37,8 +37,9 @@ class MovieComponent {
   }
 
   searchMovie(title) {
-    this.$http.get('http://www.omdbapi.com/?t=' + title).then(response => {
+    this.$http.get('http://api.myapifilms.com/imdb/idIMDB?title='+title+'&token=ee3bf259-126b-4104-805d-6b39cd626313').then(response => {
       this.newMovie = response.data;
+      console.log(this.newMovie);
       if(this.newMovie){
         this.title = '';
         this.movieInput = true;

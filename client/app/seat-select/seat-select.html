@@ -18,7 +18,7 @@
 <div class="container" style="text-align:center">
 
   <div class="cont-left">
-    <ol type="A">
+    <ol id="list" type="A">
       <h4>{{seatSelectCtrl.classType[0]}}</h4>
       <li ng-repeat="r in seatSelectCtrl.generateArray(10) | limitTo:2:0">
         <div class="seat crossOut" data-row="{{r}}" data-col="{{c}}" data-classType="{{seatSelectCtrl.classType[0]}}" ng-repeat="c in seatSelectCtrl.generateArray(20) | limitTo:10:0" ng-class="{'selected-cell': seatSelectCtrl.isSelected(r,c), 'booked-cell': seatSelectCtrl.isBooked(r,c)}" ng-click="seatSelectCtrl.onClick($event)">{{c}}</div>

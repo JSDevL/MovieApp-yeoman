@@ -1,0 +1,9 @@
+#movTable {
+  margin: 50px auto;
+  /*width: 900px;*/
+}
+
+#movHead {
+  background-color: #46b8da;
+  color: white;
+}

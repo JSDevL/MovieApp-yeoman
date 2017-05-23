@@ -1,52 +1,77 @@
-<!-- Modal -->
-<div class="modal fade" data-backdrop="static" id="myModal" role="dialog">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Choose your city</h4>
-      </div>
-      <div class="modal-body form-group">
-        <select class="form-control" ng-model="mainCtrl.cityName">
-          <option ng-repeat="city in mainCtrl.citiesData" value="{{city.name}}">{{city.name}}</option>
-        </select>
-        <button class="form-control btn btn-default" ng-click="mainCtrl.selCity()">Select</button>
+<div class="home-cont">
+  <!-- Modal -->
+  <div ng-hide="mainCtrl.currentUser === 'admin'" class="modal fade" data-backdrop="static" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Choose your city</h4>
+        </div>
+        <div class="modal-body form-group">
+          <select class="form-control" ng-model="mainCtrl.cityName">
+            <option ng-repeat="city in mainCtrl.citiesData" value="{{city.name}}">{{city.name}}</option>
+          </select>
+          <button class="form-control btn btn-default" ng-click="mainCtrl.selCity()">Select</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="container">
-  <div id="ex-carousel" class="carousel slide" style="height: 450px; margin-top:50px;">
-      <ol class="carousel-indicators">
-          <li data-target="#ex-carousel" data-slide-to="0" class="active"></li>
-          <li data-target="#ex-carousel" data-slide-to="1"></li>
-          <li data-target="#ex-carousel" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner" style="height: 450px;">
-          <div class="item active car-div">
-              <img class="car-img" src="assets/images/img1.png">
-          </div>
 
-          <div class="item">
-              <img class="car-img" src="assets/images/img2.jpg">
-          </div>
-
-          <div class="item">
-              <img class="car-img" src="assets/images/img3.jpg">
-          </div>
+  <div ng-hide="mainCtrl.currentUser === 'admin'" class="carousel-cont">
+    <div class="carousel slide" id="ex-carousel">
+      <div class="carousel-inner">
+        <div class="item">
+          <img class="car-img" src="assets/images/img/collage1.jpg">
+        </div>
+        <div class="item active">
+          <img class="car-img" src="assets/images/img/collage2.jpg">
+        </div>
+        <div class="item">
+          <img class="car-img" src="assets/images/img/collage3.jpg">
+        </div>
       </div>
-      <!-- <a class="left carousel-control" href="#ex-carousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-      <a class="right carousel-control" href="#ex-carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a> -->
+      <a class="left carousel-control" href="#ex-carousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#ex-carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div>
+
   </div>
 
-  <div class="movie-display" ng-repeat="movie in mainCtrl.movieDetails">
-    <h4>{{movie.name}}</h4>
-    <img src="{{movie.poster}}">
-    <h6>{{movie.genre}}</h6>
-    <a class="btn btn-info" ng-click="mainCtrl.sel(movie.name)" href="/datetime-select">BOOK NOW</a>
-    <a class="btn btn-info" ng-click="mainCtrl.rate()">RATE</a>
-    <div id="rateYo">
+  <br/><br/>
 
+  <div class="container">
+    <h3>NOW SHOWING</h3>
+
+    <br/>
+
+    <div ng-hide="mainCtrl.currentUser === 'admin'" id="search-bar">
+      <input id="search-inp" class="form-control" placeholder="movie title" ng-model="mainCtrl.searchString">
+      <button id="search-btn" class="btn btn-default glyphicon glyphicon-search"></button>
+    </div>
+
+    <br/>
+
+    <div ng-hide="mainCtrl.currentUser === 'admin'" class="movie-display" ng-repeat="movie in mainCtrl.movieDetails | filter:{name:mainCtrl.searchString}">
+      <h5>{{movie.name | uppercase}}</h5>
+      <div class="cont">
+        <img id="blurImg" src="{{movie.poster}}">
+        <div id="rateCont">
+          <p>Average Rating = {{mainCtrl.avgR | number:2}}</p>
+          <div ng-show="mainCtrl.canRate" id="rateYo">
+
+          </div>
+          <a ng-show="mainCtrl.canRate" class="btn btn-info" id="rateBtn" ng-click="mainCtrl.rate()">RATE</a>
+        </div>
+      </div>
+      <h6>{{movie.genre}}</h6>
+      <a class="btn btn-info" ng-hide="mainCtrl.currentUser === 'admin'" ng-click="mainCtrl.sel(movie.name)" href="/datetime-select">BOOK NOW</a><br/><br/>
+    </div>
+
+    <div ng-show="mainCtrl.currentUser === 'admin'" class="movie-display" ng-repeat="movie in mainCtrl.moviesData | filter:{name:mainCtrl.searchString}">
+      <h4>{{movie.name | uppercase}}</h4>
+      <div class="cont">
+        <img id="img" src="{{movie.poster}}">
+      </div>
+      <h6>{{movie.genre}}</h6>
     </div>
   </div>
 </div>

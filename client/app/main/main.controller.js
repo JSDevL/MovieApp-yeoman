@@ -1,21 +1,29 @@
 'use strict';
 
+
 (function() {
 
   class MainController {
 
-    constructor($http, booking) {
+    constructor($http, Auth, booking) {
       this.$http = $http;
       this.movieNames = [];
       this.movieDetails = [];
+      this.rating = 0;
+      this.count = 0;
+      this.avgR = 0;
       this.movie;
       this.cityName;
       this.booking = booking;
-
+      this.currentUser = Auth.getCurrentUser().role;
+      this.canRate = true;
     }
 
     $onInit() {
-      $('#myModal').modal();
+      console.log(this.currentUser);
+      if(this.currentUser !== 'admin'){
+        $('#myModal').modal();
+      };
       this.$http.get('/api/cities').then(response => {
         this.citiesData = response.data;
         // this.socket.syncUpdates('city', this.citiesData);
@@ -24,15 +32,26 @@
         this.boundData = response.data;
       });
       this.$http.get('/api/movie-endpoints').then(response => {
-        this.moviesData = response.data;
+        console.log(response.data.name);
+        console.log(this.boundData.movie);
+        if(response.data.name === this.boundData.movie){
+          this.moviesData = response.data;
+        }
+      });
+      this.$http.get('/api/rating-endpoints').then(response => {
+        console.log(response.data);
       });
     }
 
     rate() {
-      $("#rateYo").rateYo({
-        rating: 3.6,
-        starWidth: "20px"
-      });
+      var $rateYo = $("#rateYo").rateYo();
+      this.rating += $rateYo.rateYo("rating");
+      this.count++;
+      this.avgR = this.rating/this.count;
+      console.log(this.avgR);
+      if(this.avgR !== 0.00){
+        this.canRate = false;
+      }
     }
 
     selCity() {

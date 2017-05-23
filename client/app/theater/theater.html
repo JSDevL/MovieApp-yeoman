@@ -4,20 +4,22 @@
     <h4>ADD A NEW THEATER</h4>
 
     <div class="row" style="margin:30px;">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <input type="text" placeholder="Name" class="form-control" ng-model="theaterCtrl.newTheater.name" />
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-3">
         <input type="text" placeholder="Location" class="form-control" ng-model="theaterCtrl.newTheater.location" />
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-6">
         <label>Select a city</label>
         <select class="form-control" ng-model="theaterCtrl.cityName" style="width: 150px; margin: 0 20px;">
-            <option ng-repeat="city in theaterCtrl.citiesData" value="{{city.name}}">{{city.name}}</option>
+          <option selected="selected">select</option>
+          <option ng-repeat="city in theaterCtrl.citiesData" value="{{city.name}}">{{city.name}}</option>
         </select>
         <button class="btn btn-default" type="submit" ng-click="theaterCtrl.addCity()">Add</button>
+        <button class="btn btn-default" type="submit" ng-click="theaterCtrl.removeCity()">Remove</button>
       </div>
     </div>
 
@@ -31,7 +33,7 @@
 
     <label>Select city</label>
     <select ng-model="theaterCtrl.findCity" style="width: 150px; margin:30px;" required>
-        <option ng-repeat="city in theaterCtrl.citiesData" value="{{city.name}}">{{city.name}}</option>
+      <option ng-repeat="city in theaterCtrl.citiesData" value="{{city.name}}">{{city.name}}</option>
     </select>
     <button class="btn btn-default" type="submit" ng-click="theaterCtrl.getTheaters()">Select</button>
 

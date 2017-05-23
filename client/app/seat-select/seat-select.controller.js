@@ -27,9 +27,12 @@ class SeatSelectComponent {
 
   $onInit() {
     $('#myModal').modal();
-    console.log(this.totSeats);
     this.$http.get('/api/payment-endpoints').then(response => {
-      this.bookedSeats = response.data;
+      for(let ele of response.data){
+        for(let seat of ele.seatNos){
+          this.bookedSeats.push(seat);
+        }
+      }
     });
     this.selectedTheater = this.booking.myFunc.selectedTheater;
     this.selectedMovie = this.booking.myFunc.selectedMovie;
@@ -107,12 +110,10 @@ class SeatSelectComponent {
 
   isBooked(r,c) {
     for(let ele of this.bookedSeats){
-      for(let seat of ele.seatNos){
-        var row = seat.substr(0, 1).charCodeAt(0) - 64;
-        var col = parseInt(seat.substr(1));
-        if(r===row && c===col){
-          return true;
-        }
+      var row = ele.substr(0, 1).charCodeAt(0) - 64;
+      var col = parseInt(ele.substr(1));
+      if(r===row && c===col){
+        return true;
       }
     }
     return false;

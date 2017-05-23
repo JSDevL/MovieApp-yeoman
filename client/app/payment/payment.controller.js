@@ -3,10 +3,11 @@
 (function(){
 
 class PaymentComponent {
-  constructor($http, $location, booking) {
+  constructor($http, $location, booking, Auth) {
     this.$http = $http;
     this.booking = booking;
     this.$location = $location;
+    this.currentUser = Auth.getCurrentUser().name;
   }
 
   $onInit() {
@@ -40,7 +41,13 @@ class PaymentComponent {
 
   submit() {
     this.$http.post('/api/payment-endpoints', {
-      seatNos: this.selectedSeats
+      userName: this.currentUser,
+      movieName: this.selectedMovie,
+      theaterName: this.selectedTheater,
+      classType: this.selectedClass,
+      seatNos: this.selectedSeats,
+      date: this.selectedDate,
+      time: this.selectedTime
     });
     this.$location.path('/receipt');
   }

@@ -1,44 +1,46 @@
-<div class="container-fluid">
-  <table class="table" id="movTable">
+<div class="container-fluid" id="movCont">
+  <div class="table-responsive" id="movTable">
+    <table class="table">
 
-    <tr class="success">
-      <th class="text-center col-md-3">Name</th>
-      <th class="text-center col-md-3">Genre</th>
-      <th class="text-center col-md-3">Release Date</th>
-      <th class="text-center col-md-3"></th>
-    </tr>
+      <tr id="movHead">
+        <th class="text-center col-md-4">Name</th>
+        <th class="text-center col-md-3">Genre</th>
+        <th class="text-center col-md-3">Release Date</th>
+        <th class="text-center col-md-2"></th>
+      </tr>
 
-    <tr ng-repeat="movie in movieCtrl.moviesData">
-      <td class="text-center col-md-3">{{movie.name}}</td>
-      <td class="text-center col-md-3">{{movie.genre}}</td>
-      <td class="text-center col-md-3">{{movie.date}}</td>
-      <td class="text-center col-md-3"><button class="btn btn-danger" ng-click="movieCtrl.deleteMovie(movie)">Remove</button></td>
-    </tr>
+      <tr ng-repeat="movie in movieCtrl.moviesData">
+        <td class="col-md-4">{{movie.name}}</td>
+        <td class="col-md-3">{{movie.genre}}</td>
+        <td class="text-center col-md-3">{{movie.date}}</td>
+        <td class="text-center col-md-2"><button class="btn btn-danger" ng-click="movieCtrl.deleteMovie(movie)"><span class="glyphicon glyphicon-trash"></span></button></td>
+      </tr>
 
-    <tr>
-        <td class="text-center col-md-3" style="vertical-align: middle;">
-          <form name="movForm">
-            <div class="form-group">
-              <input type="text" placeholder="Title" class="form-control" ng-model="movieCtrl.title" required><br/>
-              <button type="submit" id="searchButton" class="btn btn-default" ng-disabled="movForm.$invalid" ng-click="movieCtrl.searchMovie(movieCtrl.title)">Search</button>
-            </div>
-          </form>
-        </td>
+      <tr>
+          <td class="text-center col-md-4" style="vertical-align: middle;">
+            <form name="movForm">
+              <div class="form-group">
+                <input type="text" placeholder="Title" class="form-control" ng-model="movieCtrl.title" required><br/>
+                <button type="submit" id="searchButton" class="btn btn-default" ng-disabled="movForm.$invalid" ng-click="movieCtrl.searchMovie(movieCtrl.title)">Search</button>
+              </div>
+            </form>
+          </td>
 
-        <td ng-show="movieCtrl.movieInput" class="text-center col-md-3" style="vertical-align: middle;"><img src="{{movieCtrl.newMovie.Poster}}" style="height: 200px; width: auto;"></td>
+          <td ng-show="movieCtrl.movieInput" class="text-center col-md-3" style="vertical-align: middle;"><img src="{{movieCtrl.newMovie.Poster}}" style="height: 200px; width: auto;"></td>
 
-        <td ng-show="movieCtrl.movieInput" class="col-md-3" style="vertical-align: middle;">
-          Title: {{movieCtrl.newMovie.Title}}</br>
-          Year: {{movieCtrl.newMovie.Year}}</br>
-          Langauage: {{movieCtrl.newMovie.Language}}</br>
-          Genre: {{movieCtrl.newMovie.Genre}}</br>
-          Runtime: {{movieCtrl.newMovie.Runtime}}</br>
-          Release Date: {{movieCtrl.newMovie.Released}}
-        </td>
+          <td ng-show="movieCtrl.movieInput" class="col-md-3" style="vertical-align: middle;">
+            Title: {{movieCtrl.newMovie.Title}}</br>
+            Year: {{movieCtrl.newMovie.Year}}</br>
+            Langauage: {{movieCtrl.newMovie.Language}}</br>
+            Genre: {{movieCtrl.newMovie.Genre}}</br>
+            Runtime: {{movieCtrl.newMovie.Runtime}}</br>
+            Release Date: {{movieCtrl.newMovie.Released}}
+          </td>
 
-        <td ng-show="movieCtrl.movieInput" class="text-center col-md-3" style="vertical-align: middle;"><button class="btn btn-success" ng-click="movieCtrl.addMovie()">Add</button></td>
-    </tr>
-  </table>
+          <td ng-show="movieCtrl.movieInput" class="text-center col-md-3" style="vertical-align: middle;"><button class="btn btn-success" ng-click="movieCtrl.addMovie()">Add</button></td>
+      </tr>
+    </table>
+  </div>
 
   </div>
 </div>

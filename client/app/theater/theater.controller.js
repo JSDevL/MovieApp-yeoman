@@ -37,6 +37,15 @@ class TheaterComponent {
     });
   }
 
+  removeCity() {
+    var city = prompt("Enter city to remove");
+    for(let ele of this.citiesData){
+      if(ele.name===city){
+        this.$http.delete('/api/cities/' + ele._id );
+      }
+    }
+  }
+
   addTheater() {
 
     /* to citiesdetails collection */

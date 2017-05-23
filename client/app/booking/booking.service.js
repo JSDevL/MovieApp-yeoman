@@ -10,6 +10,7 @@ function bookingService() {
       this.selectedSeats = [];
       this.price = '';
       this.totPrice = '';
+      this.userRole;
     };
 }
 
