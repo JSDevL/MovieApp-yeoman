@@ -24,10 +24,16 @@ class MovieComponent {
 
   addMovie() {
     this.$http.post('/api/movie-endpoints', {
-      name: this.newMovie.Title,
-      genre: this.newMovie.Genre,
-      date: this.newMovie.Released,
-      poster: this.newMovie.Poster
+      title: this.newMovieInfo.title,
+      genre: this.genre,
+      date: this.newMovieInfo.release_date,
+      poster: this.poster,
+      plot: this.newMovieInfo.overview,
+      actors: _.pluck(this.newMovieCredits.cast, 'name'),
+      directors: _.pluck(_.filter(this.newMovieCredits.crew, function(member){ return member.job === "Director" }), 'name'),
+      producers:_.pluck(_.filter(this.newMovieCredits.crew, function(member){ return member.job === "Producer" }), 'name'),
+      language: this.language,
+      runtime: this.newMovieInfo.runtime + " mins"
     });
     this.movieInput = false;
   }
@@ -37,10 +43,21 @@ class MovieComponent {
   }
 
   searchMovie(title) {
-    this.$http.get('http://api.myapifilms.com/imdb/idIMDB?title='+title+'&token=ee3bf259-126b-4104-805d-6b39cd626313').then(response => {
-      this.newMovie = response.data;
-      console.log(this.newMovie);
-      if(this.newMovie){
+    this.$http.get('https://api.themoviedb.org/3/search/movie?api_key=44bbe2a64fc1333b71c7aedd8d04ad28&query='+title).then(response => {
+      this.newMovieId = response.data.results[0].id;
+      console.log(response.data.results[0]);
+      this.$http.get('https://api.themoviedb.org/3/movie/'+this.newMovieId+'?api_key=44bbe2a64fc1333b71c7aedd8d04ad28').then(response => {
+        this.newMovieInfo = response.data;
+        console.log(this.newMovieInfo);
+        this.poster = 'http://image.tmdb.org/t/p/w185'+this.newMovieInfo.poster_path
+      });
+      this.$http.get('https://api.themoviedb.org/3/movie/'+this.newMovieId+'/credits?api_key=44bbe2a64fc1333b71c7aedd8d04ad28').then(response => {
+        this.newMovieCredits = response.data;
+        console.log(this.newMovieCredits)
+        this.genre = _.pluck(this.newMovieInfo.genres, 'name').join(", ");
+        this.language = _.pluck(this.newMovieInfo.spoken_languages, 'name').join(", ");
+      });
+      if(this.newMovieInfo){
         this.title = '';
         this.movieInput = true;
         document.getElementById("searchButton").value = "";

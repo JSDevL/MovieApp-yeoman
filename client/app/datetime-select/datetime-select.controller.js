@@ -16,7 +16,7 @@ class DatetimeSelectComponent {
       socket.unsyncUpdates('movieTheaterEndpoint');
     });
 
-    this.movie = booking.myFunc.selectedMovie;
+    this.movie = booking.selectedMovie;
   }
 
   $onInit() {
@@ -64,7 +64,7 @@ class DatetimeSelectComponent {
         i = "0" + i;
       } return i;
     }
-    this.booking.myFunc.selectedDate = date;
+    this.booking.selectedDate = date;
     this.theatersData = [];
     for(let ele of this.boundData){
       if(ele.movie===this.movie){
@@ -85,8 +85,8 @@ class DatetimeSelectComponent {
   }
 
   sel(theater, timing) {
-    this.booking.myFunc.selectedTheater = theater;
-    this.booking.myFunc.selectedTime = timing;
+    this.booking.selectedTheater = theater;
+    this.booking.selectedTime = timing;
     this.$location.path('/seat-select');
   }
 
@@ -96,7 +96,7 @@ angular.module('movieAppApp')
   .component('datetimeSelect', {
     templateUrl: 'app/datetime-select/datetime-select.html',
     controller: DatetimeSelectComponent,
-    controllerAs: 'datetimeSelectCtrl'
+    controllerAs: 'datetimeSelectCtrl',
   });
 
 })();

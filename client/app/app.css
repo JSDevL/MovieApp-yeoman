@@ -31,6 +31,10 @@
  * App-wide Styles
  */
 
+ body {
+  background-color: #cccccc;
+ }
+
 .browserupgrade {
   margin: 0.2em 0;
   background: #ccc;
@@ -41,4 +45,8 @@
 #logo {
   height: 100px;
   padding-top: 0px;
+}
+
+.container, .container-fluid {
+  margin-top: 10px;
 }

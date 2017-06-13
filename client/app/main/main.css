@@ -1,7 +1,6 @@
 .home-cont {
   height: 100%;
   width: 100%;
-  background-color: #cccccc;
   text-align: center;
   padding-bottom: 100px;
   /*background-image: url("../../assets/images/download.jpeg");
@@ -16,6 +15,7 @@
 .carousel-cont{
   width: 90%;
   margin: auto;
+  position: relative;
 }
 
 .car-img {
@@ -24,6 +24,25 @@
   width: 100%;
   /*margin-top: 150px;*/
   /*filter: blur(2px);*/
+}
+
+#msg {
+  position: absolute;
+  top: 55%;
+  margin: auto;
+  width: 100%;
+  height: 80px;
+  font-family: "Courier New";
+  color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+
+#clickety {
+  height: 50px;
+  width: 150px;
+  font-size: 17px;
+  padding: 6px 10px;
 }
 
 #search-bar {
@@ -49,24 +68,30 @@
   border: 1px solid black;
 }
 
+#movie-disp {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  background-color: #262626;
+}
 
 .movie-display {
-  /*margin: 20px;*/
+  margin: 50px;
   border: 1px solid grey;
   background-color: #f2f2f2;
   width: 200px;
 }
 
 .cont {
-  /*position: relative;*/
+  position: relative;
 }
 
-#img{
+.img{
   width: 100%;
   height: auto;
 }
 
-#blurImg {
+.blurImg {
   opacity: 1;
   display: block;
   width: 100%;
@@ -75,7 +100,7 @@
   backface-visibility: hidden;
 }
 
-#rateCont{
+.rateCont{
   transition: .5s ease;
   opacity: 0;
   position: absolute;
@@ -85,10 +110,10 @@
   -ms-transform: translate(-50%, -50%)
 }
 
-.cont:hover #blurImg {
+.cont:hover .blurImg {
   opacity: 0.3;
 }
 
-.cont:hover #rateCont {
+.cont:hover .rateCont {
   opacity: 1;
 }

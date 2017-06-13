@@ -3,8 +3,21 @@
 (function(){
 
 class ReceiptComponent {
-  constructor() {
-    this.message = 'Hello';
+  constructor($http, booking) {
+    this.$http = $http;
+    this.booking = booking;
+  }
+
+  $onInit() {
+    this.selectedPoster = this.booking.selectedPoster;
+    this.selectedTheater = this.booking.selectedTheater;
+    this.selectedMovie = this.booking.selectedMovie;
+    this.selectedDate = this.booking.selectedDate;
+    this.selectedTime = this.booking.selectedTime;
+    this.selectedClass = this.booking.selectedClass;
+    this.selectedSeats = this.booking.selectedSeats;
+    this.price = this.booking.price;
+    this.totPrice = this.booking.totPrice;
   }
 }
 

@@ -1,38 +1,40 @@
-<div class="container">
+<div class="tainer" style="margin: 50px 0 0 350px;">
   <form class="form-horizontal" style="margin-top:30px;">
     <div class="form-group">
-      <label class="col-sm-2 control-label">Select a movie</label>
-      <div class="col-sm-2">
+      <label class="col-sm-3 control-label">Choose a movie</label>
+      <div class="col-sm-3">
         <select class="form-control" ng-model="movieTheaterCtrl.movieName">
-          <option ng-repeat="movie in movieTheaterCtrl.moviesData" value="{{movie.name}}">{{movie.name}}</option>
+          <option ng-repeat="movie in movieTheaterCtrl.moviesData" value="{{movie.title}}">{{movie.title}}</option>
         </select>
-      </div>
-      <div class="col-sm-1">
-        <button class="form-control btn btn-default" ng-click="">Select</button>
       </div>
     </div>
 
     <div class="form-group">
-      <label class="col-sm-2 control-label">Select a city</label>
-      <div class="col-sm-2">
+      <label class="col-sm-3 control-label">Choose a city</label>
+      <div class="col-sm-3">
         <select class="form-control" ng-model="movieTheaterCtrl.cityName">
           <option ng-repeat="city in movieTheaterCtrl.citiesData" value="{{city.name}}">{{city.name}}</option>
         </select>
       </div>
-      <div class="col-sm-1">
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-3">
         <button class="form-control btn btn-default" ng-click="movieTheaterCtrl.getTheaters()">Select</button>
       </div>
     </div>
   </form>
 
-  <div class="panel-group" id="accordion">
+
+  <div class="panel-group" id="accordion" style="width: 600px; margin-left: 100px;">
     <div class="panel" ng-repeat="theater in movieTheaterCtrl.theatersList">
       <div class="panel-heading">
-        <button class="btn btn-default" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-{{theater}}" ng-click="movieTheaterCtrl.getTheaterDetails(theater)">{{theater}}</button>
+        <button class="btn btn-default" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-{{theater | cropFilt}}" ng-click="movieTheaterCtrl.getTheaterDetails(theater)">{{theater}}</button>
         <button class="btn btn-danger" ng-click="movieTheaterCtrl.deleteMapping(theater)">X</button>
       </div>
-      <div id="collapse-{{theater}}" class="panel-collapse collapse">
-        <div class="panel-body">
+      <div id="collapse-{{theater | cropFilt}}" class="panel-collapse collapse">
+        <div class="panel-body col-sm-5">
           <p ng-hide="movieTheaterCtrl.datesList">No Dates Available</p>
           <p class="panel-title" ng-show="movieTheaterCtrl.datesList">Dates</p>
           <div class="well well-sm" ng-show="movieTheaterCtrl.datesList" ng-repeat="date in movieTheaterCtrl.datesList">
@@ -44,7 +46,7 @@
             <button class="form-control btn btn-default" ng-click="movieTheaterCtrl.addDate()">+</button>
           </div>
         </div>
-        <div class="panel-body">
+        <div class="panel-body col-sm-5">
           <p ng-hide="movieTheaterCtrl.timesList">No Timings Available</p>
           <p class="panel-title" ng-show="movieTheaterCtrl.timesList">Timings</p>
           <div class="well well-sm" ng-show="movieTheaterCtrl.timesList" ng-repeat="time in movieTheaterCtrl.timesList">
@@ -56,12 +58,9 @@
             <button class="form-control btn btn-default" ng-click="movieTheaterCtrl.addTime()">+</button>
           </div>
         </div>
-        <button type="submit" class="btn btn-success" ng-click="movieTheaterCtrl.saveDetails()">Update</button>
+        <br/><br/><br/>
+        <button type="submit" class="btn btn-success col-sm-2" ng-click="movieTheaterCtrl.saveDetails()">Save</button>
       </div>
     </div>
   </div>
-</div>
-
-</div>
-
 </div>

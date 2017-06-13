@@ -3,7 +3,7 @@
 (function(){
 
   class MovieTheaterComponent {
-    constructor($http, $scope, socket, booking) {
+    constructor($http, $scope, socket) {
       this.$http = $http;
       this.socket = socket;
       this.movieName;
@@ -47,6 +47,7 @@
     }
 
     getTheaterDetails(theaterName) {
+      console.log(theaterName);
       this.theaterName=theaterName;
       this.datesList=[];
       this.timesList=[];
@@ -86,7 +87,6 @@
       var fullDate = d+"."+m+"."+y;
       this.datesList.push(fullDate);
       this.ogDatesList.push(this.date);
-      this.date='';
     }
 
     deleteDate(date) {
@@ -116,14 +116,14 @@
       if(this.boundData.length){
         for(let ele of this.boundData){
           if(ele.city===this.cityName && ele.movie===this.movieName && ele.theater===this.theaterName){
-            console.log("A");
+            console.log("adding date and time");
             return this.$http.put('/api/movie-theater-endpoints/' + ele._id, {
               dates: this.ogDatesList,
               times: this.timesList
             });
-          } else{
-            console.log("B");
-            this.$http.post('/api/movie-theater-endpoints', {
+          } else if(ele.city!==this.cityName || ele.movie!==this.movieName || ele.theater!==this.theaterName){
+            console.log("new mapping");
+            return this.$http.post('/api/movie-theater-endpoints', {
               city: this.cityName,
               movie: this.movieName,
               theater: this.theaterName,
@@ -133,7 +133,7 @@
           }
         }
       } else{
-        console.log("C");
+        console.log("posting for the first time");
         this.$http.post('/api/movie-theater-endpoints', {
           city: this.cityName,
           movie: this.movieName,
@@ -142,9 +142,11 @@
           times: this.timesList
         });
       }
-      this.cityName='';
-      this.movieName='';
-      this.theaterName='';
+      this.datesList = [];
+      this.movieName = '';
+      this.cityName = '';
+      this.theatersList = [];
+      console.log("defw");
     }
 
     deleteMapping(theaterName) {
@@ -157,14 +159,23 @@
       }
     }
 
-
   }
 
+
+  angular.module('movieAppApp')
+  .filter('cropFilt', function () {
+    return function(x) {
+      var i, txt = "";
+      for (i = 0; i < x.length; i++) {
+        if(x[i] !== " "){ txt+=x[i]; }
+        else if(x[i] === " "){ return txt; }
+      }
+    };
+  });
   angular.module('movieAppApp')
   .component('movieTheater', {
     templateUrl: 'app/movie-theater/movie-theater.html',
     controller: MovieTheaterComponent,
     controllerAs: 'movieTheaterCtrl'
-  });
-
+  })
 })();

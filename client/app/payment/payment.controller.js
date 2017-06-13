@@ -11,14 +11,14 @@ class PaymentComponent {
   }
 
   $onInit() {
-    this.selectedTheater = this.booking.myFunc.selectedTheater;
-    this.selectedMovie = this.booking.myFunc.selectedMovie;
-    this.selectedDate = this.booking.myFunc.selectedDate;
-    this.selectedTime = this.booking.myFunc.selectedTime;
-    this.selectedClass = this.booking.myFunc.selectedClass;
-    this.selectedSeats = this.booking.myFunc.selectedSeats;
-    this.price = this.booking.myFunc.price;
-    this.totPrice = this.booking.myFunc.totPrice;
+    this.selectedTheater = this.booking.selectedTheater;
+    this.selectedMovie = this.booking.selectedMovie;
+    this.selectedDate = this.booking.selectedDate;
+    this.selectedTime = this.booking.selectedTime;
+    this.selectedClass = this.booking.selectedClass;
+    this.selectedSeats = this.booking.selectedSeats;
+    this.price = this.booking.price;
+    this.totPrice = this.booking.totPrice;
   }
 
   toggle(paymentType) {

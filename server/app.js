@@ -4,8 +4,8 @@
 
 'use strict';
 
-import express from 'express';
-import mongoose from 'mongoose';
+var express = require('express');
+var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 import config from './config/environment';
 import http from 'http';

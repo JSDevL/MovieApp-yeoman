@@ -5,5 +5,6 @@ angular.module('movieAppApp')
     $routeProvider
       .when('/datetime-select', {
         template: '<datetime-select></datetime-select>'
+        // authenticate: 'user'
       });
   });

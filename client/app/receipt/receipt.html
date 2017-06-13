@@ -1,3 +1,21 @@
-<div class="container">
-  
+<div class="contain">
+  <div class="alert alert-success" role="alert">Ticket(s) have been successfully booked</div>
+  <div class="receipt-cont">
+    <div class="left-rec">
+      <img class="card-img-top" src="{{receiptCtrl.selectedPoster}}">
+    </div>
+    <div class="right-rec">
+      <h4>Tickets booked for {{receiptCtrl.selectedMovie}}</h4>
+      <h4>at {{receiptCtrl.selectedTheater}} on {{receiptCtrl.selectedDate}}, {{receiptCtrl.selectedTime}}</h4>
+      <br/>
+      <h4>{{receiptCtrl.selectedClass}}</h4>
+      <p class="seat-no" ng-repeat="seat in receiptCtrl.selectedSeats">{{seat}} </p>
+      <br/><br/>
+      <h5>Ticket Price : <span style="font-size:1.5rem">Rs.{{receiptCtrl.price}}</span></h5>
+      <h5>Service Tax : <span style="font-size:1.5rem">Rs.4</span></h5>
+      <h5>Convenience Fee: <span style="font-size:1.5rem">Rs.15</span></h5>
+      <br/>
+      <h4 text-center>Total Amount: Rs.{{receiptCtrl.totPrice}}</h4>
+    </div>
+  </div>
 </div>

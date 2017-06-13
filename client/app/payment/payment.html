@@ -1,10 +1,16 @@
-{{paymentCtrl.currentUser}}
+<script type="text/ng-template" id="error-messages">
+  <div ng-message="required">*cannot be blank*</div>
+  <div ng-message="email">*not a valid email*</div>
+  <div ng-message="number">*should be a number*</div>
+  <div ng-message="pattern">*must be a valid phone number*</div>
+  <div ng-message="maxlength">*too long*</div>
+</script>
 
 <div class="container">
 
   <div class="pay-cont-left">
 
-    <div class="panel panel-default">
+    <div ng-show="paymentCtrl.currentUser=== 'anon'" class="panel panel-default">
       <div class="panel-heading">
         <span class="glyphicon glyphicon-chevron-down"></span>
         <h3 style="display:inline;" class="panel-title">Contact Details</h3>
@@ -12,11 +18,11 @@
       <div class="panel-body">
         <div class="row" style="margin:30px;">
           <div class="col-md-4">
-            <input type="text" placeholder="Email" class="form-control"/>
+            <input type="email" placeholder="Email" class="form-control" required/>
           </div>
 
           <div class="col-md-4">
-            <input type="text" placeholder="Phone Number" class="form-control"/>
+            <input type="text" placeholder="Phone Number" minlength=10 maxlength=10 class="form-control" required/>
           </div>
 
           <div class="col-md-4">
@@ -41,19 +47,19 @@
           <div ng-show="paymentCtrl.credit">
             Enter your card details
             <div class="card-det">
-              <input style="width:320px; margin:20px 5px;" class="card-inp form-control" type="text" placeholder="Credit card number"/>
+              <input style="width:320px; margin:20px 5px;" class="card-inp form-control" type="text" minlength=12 maxlength=12 placeholder="Credit card number"/>
               <input style="width:320px; margin:20px 5px;" class="card-inp form-control" type="text" placeholder="Name on the card"/>
               Expiry
-              <input style="width:50px; margin:1px; display:inline;" class="card-inp form-control" type="text" placeholder="MM"/>
-              <input style="width:50px; margin:1px; display:inline;" class="card-inp form-control" type="text" placeholder="YY"/>
-              <input style="width:55px; margin-left:50px; display:inline;" class="card-inp form-control" type="text" placeholder="CVV"/>
+              <input style="width:50px; margin:1px; display:inline;" class="card-inp form-control" type="text" minlength=2 maxlength=2 placeholder="MM"/>
+              <input style="width:50px; margin:1px; display:inline;" class="card-inp form-control" type="text" minlength=2 maxlength=2 placeholder="YY"/>
+              <input style="width:55px; margin-left:50px; display:inline;" class="card-inp form-control" type="text" minlength=3 maxlength=3 placeholder="CVV"/>
             </div>
           </div>
           <div style="margin-top:50px;" ng-show="paymentCtrl.cash">
             Make the payment when you collect your ticket(s).
           </div>
           <div ng-show="paymentCtrl.gv">
-            <input style="width:320px; margin:50px 0;" type="text" placeholder="Gift Voucher Number" class="form-control"/>
+            <input style="width:320px; margin:50px 0;" type="text" placeholder="Gift Voucher Number" minlength=5 maxlength=5 class="form-control"/>
             <button class="btn btn-contact" type="submit">CONTINUE</button>
           </div>
         </div>

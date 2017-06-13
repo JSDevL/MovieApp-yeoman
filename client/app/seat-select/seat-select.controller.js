@@ -34,10 +34,10 @@ class SeatSelectComponent {
         }
       }
     });
-    this.selectedTheater = this.booking.myFunc.selectedTheater;
-    this.selectedMovie = this.booking.myFunc.selectedMovie;
-    this.selectedDate = this.booking.myFunc.selectedDate;
-    this.selectedTime = this.booking.myFunc.selectedTime;
+    this.selectedTheater = this.booking.selectedTheater;
+    this.selectedMovie = this.booking.selectedMovie;
+    this.selectedDate = this.booking.selectedDate;
+    this.selectedTime = this.booking.selectedTime;
   }
 
   onClick(e){
@@ -126,10 +126,10 @@ class SeatSelectComponent {
   }
 
   submit() {
-    this.booking.myFunc.selectedClass = this.selectedClass;
-    this.booking.myFunc.selectedSeats = this.seatNos;
-    this.booking.myFunc.totPrice = this.totPrice;
-    this.booking.myFunc.price = this.price;
+    this.booking.selectedClass = this.selectedClass;
+    this.booking.selectedSeats = this.seatNos;
+    this.booking.totPrice = this.totPrice;
+    this.booking.price = this.price;
     this.$location.path('/payment');
   }
 

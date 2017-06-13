@@ -1,5 +1,6 @@
-#movTable {
-  margin: 50px auto;
+.movTable {
+  margin: 5px auto;
+  background-color: #f2f2f2;
   /*width: 900px;*/
 }
 

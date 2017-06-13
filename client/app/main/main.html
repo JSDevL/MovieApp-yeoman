@@ -16,7 +16,6 @@
     </div>
   </div>
 
-
   <div ng-hide="mainCtrl.currentUser === 'admin'" class="carousel-cont">
     <div class="carousel slide" id="ex-carousel">
       <div class="carousel-inner">
@@ -34,44 +33,98 @@
       <a class="right carousel-control" href="#ex-carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
     </div>
 
+    <div id="msg">
+      <h1>C O M I N G&nbsp;&nbsp;&nbsp;&nbsp;S O O N</h1>
+    </div>
+
   </div>
 
-  <br/><br/>
+
 
   <div class="container">
-    <h3>NOW SHOWING</h3>
+    <button ng-hide="mainCtrl.currentUser === 'admin'" class="btn btn-info" id="clickety">NOW PLAYING</button>
 
-    <br/>
+    <br/><br/>
 
-    <div ng-hide="mainCtrl.currentUser === 'admin'" id="search-bar">
-      <input id="search-inp" class="form-control" placeholder="movie title" ng-model="mainCtrl.searchString">
-      <button id="search-btn" class="btn btn-default glyphicon glyphicon-search"></button>
+    <div id="search-bar">
+      <input id="search-inp" class="form-control" placeholder="search by movie title" ng-model="mainCtrl.searchString">
     </div>
 
     <br/>
 
-    <div ng-hide="mainCtrl.currentUser === 'admin'" class="movie-display" ng-repeat="movie in mainCtrl.movieDetails | filter:{name:mainCtrl.searchString}">
-      <h5>{{movie.name | uppercase}}</h5>
-      <div class="cont">
-        <img id="blurImg" src="{{movie.poster}}">
-        <div id="rateCont">
-          <p>Average Rating = {{mainCtrl.avgR | number:2}}</p>
-          <div ng-show="mainCtrl.canRate" id="rateYo">
-
+    <div class="well well-lg" id="movie-disp">
+<!--  if anon -->
+      <div ng-show="mainCtrl.currentUser === 'anon'" class="movie-display" ng-repeat="movie in mainCtrl.movieDetails | filter:{title:mainCtrl.searchString}">
+        <div class="cont">
+          <img class="blurImg" src="{{movie.poster}}">
+          <div class="rateCont">
+            <p>Average Rating = {{mainCtrl.avgR | number:2}}</p>
           </div>
-          <a ng-show="mainCtrl.canRate" class="btn btn-info" id="rateBtn" ng-click="mainCtrl.rate()">RATE</a>
+        </div>
+        <h6>{{movie.genre}}</h6>
+        <button class="btn btn-default" data-toggle="modal" ng-click="mainCtrl.getMovieDet(movie.title)" style="padding:4px;"><span class="glyphicon glyphicon-info-sign" style="font-size:25px;"></span></button>
+        <a class="btn btn-info" ng-hide="mainCtrl.currentUser === 'admin'" ng-click="mainCtrl.sel(movie.title, movie.poster)">BOOK NOW</a><br/><br/>
+      </div>
+<!--  if user -->
+      <div ng-show="mainCtrl.currentUser === 'user'" class="movie-display" ng-repeat="movie in mainCtrl.movieDetails | filter:{title:mainCtrl.searchString}">
+        <div class="cont">
+          <img class="blurImg" src="{{movie.poster}}">
+          <div class="rateCont">
+            <p>Average Rating = {{mainCtrl.avgR | number:2}}</p>
+            <div ng-show="mainCtrl.canRate" id="rateYo">
+
+            </div>
+            <a ng-show="mainCtrl.canRate" class="btn btn-info" id="rateBtn" ng-click="mainCtrl.rate(movie.title)">RATE</a>
+          </div>
+        </div>
+        <h6>{{movie.genre}}</h6>
+        <button class="btn btn-default" data-toggle="modal" ng-click="mainCtrl.getMovieDet(movie.title)" style="padding:4px;"><span class="glyphicon glyphicon-info-sign" style="font-size:25px;"></span></button>
+        <a class="btn btn-info" ng-hide="mainCtrl.currentUser === 'admin'" ng-click="mainCtrl.sel(movie.title, movie.poster)">BOOK NOW</a><br/><br/>
+      </div>
+<!--  if admin -->
+      <div ng-show="mainCtrl.currentUser === 'admin'" class="movie-display" ng-repeat="movie in mainCtrl.adminMovieDetails | filter:{title:mainCtrl.searchString}">
+        <div class="cont">
+          <img class="img" src="{{movie.poster}}">
+        </div>
+        <h6>{{movie.genre}}</h6>
+        <button class="btn btn-default" data-toggle="modal" ng-click="mainCtrl.getMovieDet(movie.title)" style="padding:4px;"><span class="glyphicon glyphicon-info-sign" style="font-size:25px;"></span></button>
+      </div>
+
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="movieModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">{{mainCtrl.selMov.title | uppercase}}</h4>
+        </div>
+        <div class="modal-footer" style="text-align:left;">
+          Genre = {{mainCtrl.selMov.genre}}
+        </div>
+        <div class="modal-footer" style="text-align:left;">
+          Date = {{mainCtrl.selMov.date}}
+        </div>
+        <div class="modal-footer" style="text-align:left;">
+          Plot = {{mainCtrl.selMov.plot}}
+        </div>
+        <div class="modal-footer" style="text-align:left;">
+          Language = {{mainCtrl.selMov.language}}
+        </div>
+        <div class="modal-footer" style="text-align:left;">
+          Runtime = {{mainCtrl.selMov.runtime}}
+        </div>
+        <div class="modal-footer" style="text-align:left;">
+          Producers = {{mainCtrl.selMov.producers}}
+        </div>
+        <div class="modal-footer" style="text-align:left;">
+          Directors = {{mainCtrl.selMov.directors}}
+        </div>
+        <div class="modal-footer" style="text-align:left;">
+          Average Rating = {{mainCtrl.selMov.avgRating}}
         </div>
       </div>
-      <h6>{{movie.genre}}</h6>
-      <a class="btn btn-info" ng-hide="mainCtrl.currentUser === 'admin'" ng-click="mainCtrl.sel(movie.name)" href="/datetime-select">BOOK NOW</a><br/><br/>
-    </div>
-
-    <div ng-show="mainCtrl.currentUser === 'admin'" class="movie-display" ng-repeat="movie in mainCtrl.moviesData | filter:{name:mainCtrl.searchString}">
-      <h4>{{movie.name | uppercase}}</h4>
-      <div class="cont">
-        <img id="img" src="{{movie.poster}}">
-      </div>
-      <h6>{{movie.genre}}</h6>
     </div>
   </div>
 </div>

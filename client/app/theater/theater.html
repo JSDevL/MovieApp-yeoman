@@ -1,53 +1,62 @@
 <div class="container-fluid" style="text-align: center;">
 
-  <div style="padding:30px; border-bottom:2px dotted grey">
-    <h4>ADD A NEW THEATER</h4>
+  <div style="margin:10px; font-family:'Courier New'; border-bottom:7px double #46b8da; padding:0 0 50px 0;">
+    <h3>VIEW THEATERS</h3>
+    <br/>
+    <div class="dropdown" style="display:inline">
+      <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        {{theaterCtrl.findCity}}
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li ng-repeat="city in theaterCtrl.citiesData"><a ng-click="theaterCtrl.findCity=city.name">{{city.name}}</a></li>
+      </ul>
+    </div>
+    <button class="btn btn-default" type="submit" ng-click="theaterCtrl.getTheaters()">Select</button>
+    <br/><br/>
+    <table class="table table-bordered" ng-show="theaterCtrl.viewMovie">
+      <tr style="background-color: rgba(70,184,218,0.5)">
+        <th class="text-center col-md-4">Name</th>
+        <th class="text-center col-md-4"></th>
+      </tr>
 
+      <tr ng-repeat="theater in theaterCtrl.theatersList">
+        <td class="text-center col-md-4">{{theater}}</td>
+        <td class="text-center col-md-4"><button class="btn btn-danger" ng-click="theaterCtrl.deleteTheater(theater)">Remove</button></td>
+      </tr>
+    </table>
+  </div>
+
+
+  <div style="">
+    <h3>ADD A NEW THEATER</h3>
     <div class="row" style="margin:30px;">
-      <div class="col-md-3">
+      <div class="col-md-4">
         <input type="text" placeholder="Name" class="form-control" ng-model="theaterCtrl.newTheater.name" />
       </div>
 
-      <div class="col-md-3">
+      <div class="col-md-4">
         <input type="text" placeholder="Location" class="form-control" ng-model="theaterCtrl.newTheater.location" />
       </div>
 
-      <div class="col-md-6">
-        <label>Select a city</label>
-        <select class="form-control" ng-model="theaterCtrl.cityName" style="width: 150px; margin: 0 20px;">
-          <option selected="selected">select</option>
-          <option ng-repeat="city in theaterCtrl.citiesData" value="{{city.name}}">{{city.name}}</option>
-        </select>
-        <button class="btn btn-default" type="submit" ng-click="theaterCtrl.addCity()">Add</button>
-        <button class="btn btn-default" type="submit" ng-click="theaterCtrl.removeCity()">Remove</button>
+      <div class="col-md-4">
+        <div class="dropdown" style="display:inline">
+          <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            {{theaterCtrl.cityName}}
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li ng-repeat="city in theaterCtrl.citiesData"><a ng-click="theaterCtrl.cityName=city.name">{{city.name}}</a></li>
+          </ul>
+        </div>
+        <button class="btn btn-default" type="submit" ng-click="theaterCtrl.addCity()">Add a city</button>
+        <button class="btn btn-default" type="submit" ng-click="theaterCtrl.removeCity()">Remove a city</button>
       </div>
     </div>
 
     <div class="row">
       <button class="btn btn-default" type="submit" ng-click="theaterCtrl.addTheater()">Add theater</button>
     </div>
-  </div>
-
-  <div style="margin:30px;">
-    <h4>VIEW THEATERS</h4>
-
-    <label>Select city</label>
-    <select ng-model="theaterCtrl.findCity" style="width: 150px; margin:30px;" required>
-      <option ng-repeat="city in theaterCtrl.citiesData" value="{{city.name}}">{{city.name}}</option>
-    </select>
-    <button class="btn btn-default" type="submit" ng-click="theaterCtrl.getTheaters()">Select</button>
-
-    <table class="table" ng-show="theaterCtrl.viewMovie">
-      <tr class="success">
-        <th class="text-center">Name</th>
-        <th class="text-center"></th>
-      </tr>
-
-      <tr ng-repeat="theater in theaterCtrl.theatersList">
-        <td class="text-center">{{theater}}</td>
-        <td class="text-center"><button class="btn btn-danger" ng-click="theaterCtrl.deleteTheater(theater)">Remove</button></td>
-      </tr>
-    </table>
   </div>
 
 </div>

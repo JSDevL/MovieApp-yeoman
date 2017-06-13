@@ -9,7 +9,7 @@
 
     if ($cookies.get('token') && $location.path() !== '/logout') {
       currentUser = User.get();
-      booking.myFunc.userRole = currentUser;
+      booking.userRole = currentUser;
     }
 
     var Auth = {

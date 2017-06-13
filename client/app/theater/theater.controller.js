@@ -8,8 +8,8 @@ class TheaterComponent {
     this.socket = socket;
     this.theatersData = [];
     this.newTheater = [];
-    this.cityName;
-    this.findCity = [];
+    this.cityName = "Choose a city";
+    this.findCity = "Choose a city";
     this.citiesData = [];
     this.viewMovie = false;
 
@@ -32,9 +32,11 @@ class TheaterComponent {
 
   addCity() {
     var city = prompt("Enter a new city");
-    this.$http.post('/api/cities', {
-      name: city
-    });
+    if(city.length){
+      this.$http.post('/api/cities', {
+        name: city
+      });
+    }
   }
 
   removeCity() {
@@ -121,7 +123,8 @@ angular.module('movieAppApp')
   .component('theater', {
     templateUrl: 'app/theater/theater.html',
     controller: TheaterComponent,
-    controllerAs: 'theaterCtrl'
+    controllerAs: 'theaterCtrl',
+    authenticate: 'admin'
   });
 
 })();

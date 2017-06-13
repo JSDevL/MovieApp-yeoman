@@ -21,7 +21,7 @@
     <ol id="list" type="A">
       <h4>{{seatSelectCtrl.classType[0]}}</h4>
       <li ng-repeat="r in seatSelectCtrl.generateArray(10) | limitTo:2:0">
-        <div class="seat crossOut" data-row="{{r}}" data-col="{{c}}" data-classType="{{seatSelectCtrl.classType[0]}}" ng-repeat="c in seatSelectCtrl.generateArray(20) | limitTo:10:0" ng-class="{'selected-cell': seatSelectCtrl.isSelected(r,c), 'booked-cell': seatSelectCtrl.isBooked(r,c)}" ng-click="seatSelectCtrl.onClick($event)">{{c}}</div>
+        <div class="seat" data-row="{{r}}" data-col="{{c}}" data-classType="{{seatSelectCtrl.classType[0]}}" ng-repeat="c in seatSelectCtrl.generateArray(20) | limitTo:10:0" ng-class="{'selected-cell': seatSelectCtrl.isSelected(r,c), 'booked-cell': seatSelectCtrl.isBooked(r,c)}" ng-click="seatSelectCtrl.onClick($event)">{{c}}</div>
         <div class="space"></div>
         <div class="seat" data-row="{{r}}" data-col="{{c}}" data-classType="{{seatSelectCtrl.classType[0]}}" ng-repeat="c in seatSelectCtrl.generateArray(20) | limitTo:20:10" ng-class="{'selected-cell': seatSelectCtrl.isSelected(r,c), 'booked-cell': seatSelectCtrl.isBooked(r,c)}" ng-click="seatSelectCtrl.onClick($event)">{{c}}</div>
       </li>
@@ -44,7 +44,7 @@
   </div>
 
   <div class="cont-right">
-    <div class="order-summary">
+    <div class="order-summary" style="padding-top:2px;">
       <h3 id="order-title">ORDER SUMMARY</h3>
       <div class="sub-cont">
         <h5>You have chosen to watch <span style="font-size:1.75rem">{{seatSelectCtrl.selectedMovie}}</span></h5>
@@ -60,7 +60,7 @@
         <h5>Service Tax : <span style="font-size:1.5rem">Rs.4</span></h5>
         <h5>Convenience Fee: <span style="font-size:1.5rem">Rs.15</span></h5>
       </div>
-      <div ng-show="seatSelectCtrl.showPrice">
+      <div ng-show="seatSelectCtrl.showPrice" style="margin-top:15px;">
         <h4>Total Amount: Rs.{{seatSelectCtrl.totPrice}}</h4>
       </div>
     </div>

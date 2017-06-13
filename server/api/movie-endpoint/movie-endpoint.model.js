@@ -3,24 +3,20 @@
 import mongoose from 'mongoose';
 
 var MovieEndpointSchema = new mongoose.Schema({
-  name: String,
+  title: String,
   genre: String,
   date: String,
-  poster: String
+  poster: String,
+  plot: String,
+  directors: [String],
+  producers: [String],
+  language: String,
+  runtime: String,
+  avgRating: Number,
+  rating: [{
+    userName: String,
+    hasRated: Boolean
+  }]
 });
 
 export default mongoose.model('moviedetails', MovieEndpointSchema);
-
-
-// name: String,
-// genre: String,
-// date: String,
-// poster: String,
-// plot: String,
-// directors: [String],
-// language: String,
-// runtime: Number,
-// rating: {
-//   userName: String,
-//   hasRated: Boolean
-// }

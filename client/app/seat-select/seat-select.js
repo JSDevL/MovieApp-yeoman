@@ -5,5 +5,6 @@ angular.module('movieAppApp')
     $routeProvider
       .when('/seat-select', {
         template: '<seat-select></seat-select>'
+        // authenticate: 'user'
       });
   });

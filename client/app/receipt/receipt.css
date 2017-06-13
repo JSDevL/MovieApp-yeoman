@@ -1,0 +1,22 @@
+.contain {
+  width: 45%;
+  margin: 50px auto;
+}
+
+.receipt-cont{
+  padding: 0 100px;
+  background-color: #cccccc;
+  padding: 20px;
+}
+
+.left-rec{
+  display: inline-flex;
+  margin: 0 30px;
+}
+
+.right-rec{
+  font-family: "Courier New";
+  padding: 20px;
+  width: 400px;
+  display: inline-block;
+}
