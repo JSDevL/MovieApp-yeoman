@@ -27,7 +27,7 @@ function onConnect(socket) {
 
 }
 
-export default function(socketio) {
+module.exports default function(socketio) {
   // socket.io (v1.x.x) is powered by debug.
   // In order to see all the debug output, set DEBUG (in server/config/local.env.js) to including the desired scope.
   //
